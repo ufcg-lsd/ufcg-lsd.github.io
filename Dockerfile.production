@@ -1,0 +1,26 @@
+FROM node:20.12.2
+
+# Get the environment variables
+ARG CONTENTFUL_ACCESS_TOKEN
+ARG CONTENTFUL_SPACE
+
+# Set the environment variables
+ENV CONTENTFUL_ACCESS_TOKEN=$CONTENTFUL_ACCESS_TOKEN
+ENV CONTENTFUL_SPACE=$CONTENTFUL_SPACE
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy package.json and package-lock.json (if available)
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install 
+
+# Copy the rest of the application code
+COPY . .
+
+# Build the Next.js projectdock
+RUN npm run build
+
+CMD cp -r ./build /output
