@@ -23,4 +23,4 @@ COPY . .
 # Build the Next.js projectdock
 RUN npm run build
 
-CMD cp -r ./out /output
+CMD cp -r ./out/. /output
