@@ -13,8 +13,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Build Docker image
-        run: docker build -f Dockerfile.production -t my-site .
+      - name: Build Docker image using build-push-action
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile.production
+          tags: my-site:latest
+          build-args: |
+            CONTENTFUL_SPACE=${{ secrets.CONTENTFUL_SPACE }}
+            CONTENTFUL_ACCESS_TOKEN=${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
 
       - name: Run container and copy output
         run: |
