@@ -1,6 +1,6 @@
 import { PageFrame } from "@/components/PageFrame";
 
-export default function QuemSomos() {
+export default async function QuemSomos() {
   return (
     <PageFrame background="var(--color-rose-standard)">
       <p>oii</p>

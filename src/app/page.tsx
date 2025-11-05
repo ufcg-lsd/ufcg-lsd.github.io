@@ -1,7 +1,6 @@
 import { PageFrame } from "@/components/PageFrame";
-import Image from "next/image";
 
-export default function Home() {
+export default async function Home() {
   return (
     <PageFrame background="var(--color-cyan-standard)">
       <p>oii</p>
