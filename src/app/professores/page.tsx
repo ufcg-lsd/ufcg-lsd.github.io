@@ -1,8 +1,8 @@
 import { PageFrame } from "@/components/PageFrame";
 
-export default function Portfolio() {
+export default function Professores() {
   return (
-    <PageFrame background="var(--color-magenta-standard)">
+    <PageFrame background="var(--color-blue-standard)">
       <p>oii</p>
     </PageFrame>
   );
