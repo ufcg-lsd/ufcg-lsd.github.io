@@ -11,10 +11,9 @@ export const PageFrame = async ({ background, children }: { background: string; 
   }: { "navItemsCollection": { items: INavItem[] } } = await getContent(HEAD_QUERY);
 
 
-
   return (
     <div style={{ backgroundColor: background }} className={`transition duration-300 min-h-screen flex flex-col`}>
-      <Header items={header.items} />
+      <Header items={header?.items || []} />
       <main>{children}</main>
     </div>
   );
