@@ -4,11 +4,15 @@ import { INavItem } from "@/utils/interfaces";
 import Image from "next/image";
 import { HeaderItem } from "./HeaderItem";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
+import { MobileMenu } from "./MobileMenu";
+import { Icon } from "./Icon";
 
 export const Header = ({ items }: { items: INavItem[] }) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
   return (
-    <div className="flex items-center justify-between w-full bg-black/30 px-12">
+    <div className="flex items-center justify-between w-full bg-black/30 px-12 min-h-16">
       <Image
         src={"/short-logo.png"}
         width={200}
@@ -16,11 +20,18 @@ export const Header = ({ items }: { items: INavItem[] }) => {
         className="w-20 h-fit"
         alt="LSD logo with the characters combining as one big logo"
       />
-      <div className="flex">
+      <div className="hidden md:flex">
         {items.sort((a, b) => a.order - b.order).map((item, i) => (
           <HeaderItem item={item} key={i} selected={pathname === item.link} />
         ))}
       </div>
+      <div className="md:hidden">
+        <button onClick={() => setIsMenuOpen(true)} className="text-white cursor-pointer transition-all duration-300 hover:opacity-75">
+          <Icon id="menu" size={24}/>
+        </button>
+      </div>
+
+      <MobileMenu items={items} isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
     </div>
   );
 };
