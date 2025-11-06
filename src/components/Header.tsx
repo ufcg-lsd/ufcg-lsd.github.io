@@ -12,14 +12,16 @@ export const Header = ({ items }: { items: INavItem[] }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
   return (
-    <div className="flex items-center justify-between w-full bg-black/30 px-12 min-h-16">
+      <div className="flex justify-center w-full bg-black/30">
+    <div className="flex items-center justify-between w-full max-w-(--max-width) px-4 md:px-12 min-h-16">
+
       <Image
         src={"/short-logo.png"}
         width={200}
         height={100}
         className="w-20 h-fit"
         alt="LSD logo with the characters combining as one big logo"
-      />
+        />
       <div className="hidden md:flex">
         {items.sort((a, b) => a.order - b.order).map((item, i) => (
           <HeaderItem item={item} key={i} selected={pathname === item.link} />
@@ -33,5 +35,6 @@ export const Header = ({ items }: { items: INavItem[] }) => {
 
       <MobileMenu items={items} isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
     </div>
+        </div>
   );
 };

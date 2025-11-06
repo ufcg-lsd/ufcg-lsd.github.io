@@ -65,6 +65,7 @@
   --color-amber-700: #A1663B;
   --color-amber-800: #8D5732;
   --color-amber-900: #794829;
+  --max-width: 1440px;
 }
 
 @theme inline {
