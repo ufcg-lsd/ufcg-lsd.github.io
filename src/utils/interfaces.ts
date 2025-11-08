@@ -7,3 +7,9 @@ export interface INavItem {
   color: string;
   order: number;
 }
+
+export interface IContact {
+  text: string;
+  id: string;
+  link: string;
+}

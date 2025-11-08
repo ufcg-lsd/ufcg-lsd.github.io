@@ -10,6 +10,13 @@ export const HEAD_QUERY = `
         order
       }
     }
+    contactCollection {
+      items {
+        text
+        id
+        link
+      }
+    }
   }
 
 `;
