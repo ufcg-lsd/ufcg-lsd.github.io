@@ -6,7 +6,7 @@ import Link from "next/link";
 export const MosaicItem = ({ item }: { item: IHomePost }) => {
   return (
     <div
-      className="group relative flex items-center justify-between min-h-[250px] h-full flex-1 "
+      className="group relative flex items-center justify-between min-h-[200px] md:min-h-[300px] h-full flex-1 "
       style={{ backgroundColor: item.background || "white" }}
     >
       <p
