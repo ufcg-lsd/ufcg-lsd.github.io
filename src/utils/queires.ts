@@ -20,3 +20,21 @@ export const HEAD_QUERY = `
   }
 
 `;
+
+export const HOME_QUERY = `
+  query {
+    homePostCollection {
+      items {
+        text
+        background
+        thumb {
+          url
+        }
+        link
+        layout
+        hero
+        priority
+      }    
+    }
+  }
+`
