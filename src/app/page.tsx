@@ -32,12 +32,12 @@ export default async function Home() {
         <div className="flex flex-col-reverse lg:flex-row gap-4 h-full justify-between items-center">
           <div className="flex flex-col items-center lg:items-start">
             <h1 className="text-4xl font-bold w-fit">{title}</h1>
-            <article className="text-lg">
+            <article className="text-lg text-center lg:text-start ">
               {documentToReactComponents(text.json)}
             </article>
           </div>
           <Image
-            className="w-full max-w-60 h-fit"
+            className="hidden lg:block w-full max-w-60 h-fit"
             src="lsd.png"
             alt=""
             height={200}
