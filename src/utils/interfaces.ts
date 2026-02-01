@@ -13,12 +13,7 @@ export interface IContact {
 }
 
 export interface IHomePost {
-  text: string;
-  background: string;
-  thumb: { url: string };
+  id: string;
+  post: { url: string; width: number; height: number };
   link: string;
-  layout: string;
-  hero: boolean;
-  priority: number;
-
 }

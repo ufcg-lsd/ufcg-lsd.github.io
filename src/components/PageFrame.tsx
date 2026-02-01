@@ -1,7 +1,7 @@
 import { IContact, INavItem } from "@/utils/interfaces";
 import { Header } from "./Header";
 import { getContent } from "@/utils/contentful";
-import { HEAD_QUERY } from "@/utils/queires";
+import { HEAD_QUERY } from "@/utils/queries";
 import "../app/globals.css";
 import { Footer } from "./Footer";
 

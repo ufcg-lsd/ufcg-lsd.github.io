@@ -25,15 +25,13 @@ export const HOME_QUERY = `
   query {
     homePostCollection {
       items {
-        text
-        background
-        thumb {
+        id
+        post {
           url
+          width
+          height
         }
         link
-        layout
-        hero
-        priority
       }    
     }
   }

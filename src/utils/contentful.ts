@@ -21,6 +21,7 @@ export async function getContent<T>(
   });
 
   const json = await response.json();
+  console.log(json.data.homePostCollection)
 
   if (json.errors) {
     throw new Error(JSON.stringify(json.errors, null, 2));
@@ -28,3 +29,5 @@ export async function getContent<T>(
 
   return json.data;
 }
+
+
