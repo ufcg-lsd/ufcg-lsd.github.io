@@ -17,3 +17,15 @@ export interface IHomePost {
   post: { url: string; width: number; height: number };
   link: string;
 }
+
+export interface IMainBanner {
+  image: { url: string };
+}
+
+export interface IPageHeader {
+  id: string;
+  title: string;
+  text: {
+    json: any;
+  };
+}

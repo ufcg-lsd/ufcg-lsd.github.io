@@ -1,4 +1,3 @@
-
 export const HEAD_QUERY = `
   query {
     navItemsCollection {
@@ -34,5 +33,21 @@ export const HOME_QUERY = `
         link
       }    
     }
+    mainBannerCollection {
+      items {
+        image {
+          url
+        }
+      }
+    }
+    pageHeaderCollection {
+      items {
+        id
+        title
+        text {
+          json
+        }
+      }
+    }
   }
-`
+`;
