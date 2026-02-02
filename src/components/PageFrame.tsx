@@ -28,7 +28,7 @@ export const PageFrame = async ({
       <Header items={header?.items || []} />
       <main className="flex flex-col items-center min-h-screen">
         <div className="max-width my-8">
-          <div className="p-4 rounded-lg bg-white">{children}</div>
+          <div className="p-2 md:p-4 rounded-lg bg-white">{children}</div>
         </div>
       </main>
       <Footer contact={contact?.items || []} navItems={header?.items || []} />

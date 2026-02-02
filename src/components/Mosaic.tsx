@@ -9,7 +9,7 @@ export const Mosaic = ({ posts }: { posts: IHomePost[] }) => {
     <Masonry
       items={posts}
       config={{
-        columns: [1, 2, 3],
+        columns: [2, 2, 3],
         gap: [4, 8, 12],
         media: [640, 1200, 1444],
       }}

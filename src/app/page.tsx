@@ -24,15 +24,14 @@ export default async function Home() {
     (header) => header.id == "home",
   )[0];
 
-  console.log(headers);
   return (
     <PageFrame background="var(--color-cyan-standard)">
       <div className="flex flex-col gap-4">
         <BannerCarousel items={banners?.items || []} />
         <div className="flex flex-col-reverse lg:flex-row gap-4 h-full justify-between items-center">
           <div className="flex flex-col items-center lg:items-start">
-            <h1 className="text-4xl font-bold w-fit">{title}</h1>
-            <article className="text-lg text-center lg:text-start ">
+            <h1 className="text-3xl lg:text-4xl font-bold w-fit text-center">{title}</h1>
+            <article className="text-md lg:text-lg text-center lg:text-start ">
               {documentToReactComponents(text.json)}
             </article>
           </div>
