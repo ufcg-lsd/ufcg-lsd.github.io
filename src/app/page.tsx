@@ -30,7 +30,7 @@ export default async function Home() {
         <BannerCarousel items={banners?.items || []} />
         <div className="flex flex-col-reverse lg:flex-row gap-4 h-full justify-between items-center">
           <div className="flex flex-col items-center lg:items-start">
-            <h1 className="text-3xl lg:text-4xl font-bold w-fit text-center">{title}</h1>
+            <h1 className="text-2xl lg:text-4xl font-bold w-fit text-center">{title}</h1>
             <article className="text-md lg:text-lg text-center lg:text-start ">
               {documentToReactComponents(text.json)}
             </article>

@@ -26,8 +26,8 @@ export const PageFrame = async ({
       className={`transition duration-300 min-h-screen flex flex-col`}
     >
       <Header items={header?.items || []} />
-      <main className="flex flex-col items-center min-h-screen">
-        <div className="max-width my-8">
+      <main className="flex flex-col items-center">
+        <div className="max-width my-4 md:my-8">
           <div className="p-2 md:p-4 rounded-lg bg-white">{children}</div>
         </div>
       </main>

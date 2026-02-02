@@ -18,7 +18,7 @@ export const Header = ({ items }: { items: INavItem[] }) => {
           src={"/short-logo.png"}
           width={200}
           height={100}
-          className="w-20 h-fit"
+          className="w-10 md:w-20 h-fit"
           alt="LSD logo with the characters combining as one big logo"
         />
         <div className="hidden md:flex">
