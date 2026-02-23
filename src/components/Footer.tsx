@@ -17,9 +17,15 @@ export const Footer = ({
 
   const email = contact.filter((item) => item.id === "email");
   return (
-    <div className="flex justify-center w-full bg-black/30">
-      <div className="flex flex-col md:flex-row items-center justify-between w-full max-w-(--max-width) px-4 md:px-12 min-h-16 py-4 md:py-16 gap-4">
-        <div className="flex flex-col md:flex-row items-center md:items-start gap-4">
+    <div
+      className="flex justify-center w-full "
+      style={{
+        backgroundColor: navItems.filter((item) => pathname === item.link)[0]
+          .color,
+      }}
+    >
+      <div className="bg-black/30 flex flex-col md:flex-row items-center justify-between w-full px-4 md:px-12 min-h-16 py-4 md:py-16 gap-4">
+        <div className="flex flex-col md:flex-row items-center md:items-start gap-4 max-w-(--max-width) ">
           <Image
             src={"logo.png"}
             width={200}
@@ -42,11 +48,13 @@ export const Footer = ({
           </div>
         </div>
         <div className="flex flex-col items-center md:items-end text-white gap-4">
-          <h2 className="text-lg md:text-xl font-bold">Redes sociais e contatos</h2>
+          <h2 className="text-lg md:text-xl font-bold">
+            Redes sociais e contatos
+          </h2>
           <div className="flex gap-2">
             {contact
               .filter(
-                (item) => item.id !== "email"
+                (item) => item.id !== "email",
               ) /* Filter out the email item */
               .map((item, i) => (
                 <a

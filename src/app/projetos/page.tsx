@@ -4,7 +4,7 @@ export const revalidate = 60;
 
 export default async function Projetos() {
   return (
-    <PageFrame background="var(--color-purple-standard)">
+    <PageFrame>
       <p>oii</p>
     </PageFrame>
   );

@@ -4,7 +4,7 @@ export const revalidate = 60;
 
 export default async function Portfolio() {
   return (
-    <PageFrame background="var(--color-magenta-standard)">
+    <PageFrame>
       <p>oii</p>
     </PageFrame>
   );

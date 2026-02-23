@@ -7,13 +7,20 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { MobileMenu } from "./MobileMenu";
 import { Icon } from "./Icon";
+import { background } from "storybook/theming";
 
 export const Header = ({ items }: { items: INavItem[] }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
   return (
-    <div className="flex justify-center w-full bg-black/30">
-      <div className="flex items-center justify-between max-width min-h-16">
+    <div
+      className="flex justify-center w-full "
+      style={{
+        backgroundColor: items.filter((item) => pathname === item.link)[0]
+          .color,
+      }}
+    >
+      <div className="flex items-center justify-between max-width min-h-16 bg-black/30">
         <Image
           src={"/short-logo.png"}
           width={200}

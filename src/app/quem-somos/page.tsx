@@ -6,7 +6,7 @@ export default async function QuemSomos() {
 
 
   return (
-    <PageFrame background="var(--color-rose-standard)">
+    <PageFrame>
       <p>oii</p>
     </PageFrame>
   );

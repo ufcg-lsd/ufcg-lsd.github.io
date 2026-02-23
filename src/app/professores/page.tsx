@@ -25,7 +25,7 @@ export default async function Professores() {
   console.log(workingFields.items);
 
   return (
-    <PageFrame background="var(--color-blue-standard)">
+    <PageFrame>
       <div className="flex flex-col gap-3 py-4 px-4">
         <div
           className="flex flex-col gap-2"

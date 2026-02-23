@@ -17,7 +17,7 @@ export const HeaderItem = ({
           {item.text}
         </div>
         <div
-          className={`bottom-0  absolute h-2 w-full ${selected ? "h-20" : "group-hover:h-20"} transition-all duration-300 z-0 rounded-t-sm`}
+          className={`bottom-0  absolute h-2 w-full ${selected ? "h-20" : "group-hover:h-20"} transition-all duration-300 z-0`}
           style={{ backgroundColor: item.color }}
         />
       </div>

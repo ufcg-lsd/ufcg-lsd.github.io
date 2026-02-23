@@ -25,7 +25,7 @@ export default async function Home() {
   )[0];
 
   return (
-    <PageFrame background="var(--color-cyan-standard)">
+    <PageFrame>
       <div className="flex flex-col gap-4">
         <BannerCarousel items={banners?.items || []} />
         <div className="flex flex-col-reverse lg:flex-row gap-4 h-full justify-between items-center">
