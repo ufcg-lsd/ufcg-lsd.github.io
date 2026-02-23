@@ -1,0 +1,30 @@
+(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,33525,(e,t,r)=>{"use strict";Object.defineProperty(r,"__esModule",{value:!0}),Object.defineProperty(r,"warnOnce",{enumerable:!0,get:function(){return s}});let s=e=>{}},75254,e=>{"use strict";var t=e.i(71645);let r=(...e)=>e.filter((e,t,r)=>!!e&&""!==e.trim()&&r.indexOf(e)===t).join(" ").trim(),s=e=>{let t=e.replace(/^([A-Z])|[\s-_]+(\w)/g,(e,t,r)=>r?r.toUpperCase():t.toLowerCase());return t.charAt(0).toUpperCase()+t.slice(1)};var l={xmlns:"http://www.w3.org/2000/svg",width:24,height:24,viewBox:"0 0 24 24",fill:"none",stroke:"currentColor",strokeWidth:2,strokeLinecap:"round",strokeLinejoin:"round"};let a=(0,t.forwardRef)(({color:e="currentColor",size:s=24,strokeWidth:a=2,absoluteStrokeWidth:i,className:n="",children:o,iconNode:c,...d},h)=>(0,t.createElement)("svg",{ref:h,...l,width:s,height:s,stroke:e,strokeWidth:i?24*Number(a)/Number(s):a,className:r("lucide",n),...!o&&!(e=>{for(let t in e)if(t.startsWith("aria-")||"role"===t||"title"===t)return!0;return!1})(d)&&{"aria-hidden":"true"},...d},[...c.map(([e,r])=>(0,t.createElement)(e,r)),...Array.isArray(o)?o:[o]])),i=(e,l)=>{let i=(0,t.forwardRef)(({className:i,...n},o)=>(0,t.createElement)(a,{ref:o,iconNode:l,className:r(`lucide-${s(e).replace(/([a-z0-9])([A-Z])/g,"$1-$2").toLowerCase()}`,`lucide-${e}`,i),...n}));return i.displayName=s(e),i};e.s(["default",()=>i],75254)},47490,e=>{"use strict";var t=e.i(43476),r=e.i(71645);let s=(0,e.i(75254).default)("mail",[["path",{d:"m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7",key:"132q7q"}],["rect",{x:"2",y:"4",width:"20",height:"16",rx:"2",key:"izxlao"}]]);var l=e.i(51514),a=e.i(57688);let i=({professor:e})=>(0,t.jsxs)("div",{className:"max-w-sm overflow-hidden bg-white font-sans",children:[(0,t.jsx)("div",{className:"aspect-square w-full overflow-hidden",children:(0,t.jsx)(a.default,{src:e.photo.url,width:800,height:800,alt:e.name,className:"h-full w-full object-cover"})}),(0,t.jsxs)("div",{className:"py-4",children:[(0,t.jsx)("h2",{className:"text-xl font-bold text-gray-900",children:e.name}),(0,t.jsx)("p",{className:"mt-1 text-sm text-gray-700",children:e.role}),(0,t.jsxs)("div",{className:"mt-3 flex items-center gap-2 transition duration-300 text-gray-500",children:[e.email&&(0,t.jsx)("a",{href:`mailto:${e.email}`,className:"hover:text-blue-600",children:(0,t.jsx)(s,{size:24,strokeWidth:1.5})}),e.github&&(0,t.jsx)("a",{href:e.github,target:"_blank",rel:"noreferrer",className:"hover:text-blue-600",children:(0,t.jsx)(l.Icon,{id:"github",size:20})}),e.lattes&&(0,t.jsx)("a",{href:e.lattes,target:"_blank",rel:"noreferrer",className:"hover:text-blue-600",children:(0,t.jsx)(l.Icon,{id:"lattes",size:20})}),e.linkedin&&(0,t.jsx)("a",{href:e.linkedin,target:"_blank",rel:"noreferrer",className:"hover:text-blue-600",children:(0,t.jsx)(l.Icon,{id:"linkedin",size:20})})]}),(0,t.jsxs)("div",{className:"mt-6 flex gap-2 overflow-x-auto whitespace-nowrap scrollbar-hide",style:{msOverflowStyle:"none",scrollbarWidth:"none"},children:[(0,t.jsx)("style",{children:`
+            .scrollbar-hide::-webkit-scrollbar {
+              display: none;
+            }
+          `}),e?.workingFieldsCollection?.items.map((e,r)=>(0,t.jsxs)("span",{className:"inline-block rounded-md bg-gray-200 px-3 py-1 text-sm text-gray-700",children:["#",e.name]},r))]})]})]}),n=({selectedTags:e,tags:r,onTagSelect:s})=>(0,t.jsxs)("div",{className:"mb-8",children:[(0,t.jsx)("h3",{className:"mb-4 text-lg font-bold text-gray-600",children:"Áreas de atuação"}),(0,t.jsx)("div",{className:"flex flex-wrap gap-3",children:r.map((r,l)=>(0,t.jsxs)("button",{onClick:()=>s(r.name),className:`rounded-lg px-4 py-2 text-sm font-medium transition-colors cursor-pointer ${e.includes(r.name)?"bg-blue-600 text-white":"bg-gray-200 text-gray-700 hover:bg-gray-300"}`,children:["#",r.name]},l))})]}),o=e.i(47167).default.env.CONTENTFUL_ENVIRONMENT||"master",c="-QI6zYpH8bOjhnSUKM3jbWnNzSY614MdNDalsvI5TNc",d=`https://graphql.contentful.com/content/v1/spaces/l1y1n3addvg8/environments/${o}`;async function h(e,t){console.log(c);let r=await fetch(d,{method:"POST",headers:{"Content-Type":"application/json",Authorization:`Bearer ${c}`},body:JSON.stringify({query:e,variables:t})}),s=await r.json();if(s.errors)throw Error(JSON.stringify(s.errors,null,2));return s.data}let m=`
+  query GetProfessors($workingField: [String]) {
+    docentesCollection(where: { 
+      workingFields: { name_in: $workingField } 
+    }) {
+      items {
+        name
+        role
+        email
+        linkedin
+        github
+        lattes
+        workingFieldsCollection {
+          items {
+            name
+          }
+        }
+        photo {
+          url
+          width
+          height
+        }
+      }   
+    }
+  }
+`;e.s(["ProfessorGrid",0,({tags:e=[],initProfessors:s=[]})=>{let[a,o]=(0,r.useState)(s),[c,d]=(0,r.useState)(!1),[g,u]=(0,r.useState)([]),x=async e=>{d(!0);try{let t=g.includes(e)?g.filter(t=>t!==e):[...g,e];u(t),console.log(t);let r=t.length?{workingField:t}:{},s=(await h(m,r)).docentesCollection.items.map(e=>({...e,workingFields:e.workingFieldsCollection.items}));console.log(s),o(s)}catch(e){console.error("Failed to fetch professors:",e)}finally{setTimeout(()=>d(!1),300)}};return(0,t.jsxs)("div",{className:"container",children:[(0,t.jsx)(n,{tags:e,selectedTags:g,onTagSelect:x}),(0,t.jsx)("div",{className:"my-6 h-px w-full bg-gray-200","aria-hidden":"true"}),c?(0,t.jsxs)("p",{className:"flex flex-col items-center gap-4 py-20 text-center text-gray-500",children:[(0,t.jsx)(l.Icon,{id:"load",className:"animate-spin",size:24}),"Carregando professores..."]}):(0,t.jsxs)(t.Fragment,{children:[(0,t.jsx)("div",{className:"grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4",children:a.map((e,r)=>(0,t.jsx)(i,{professor:e},r))}),0===a.length&&(0,t.jsx)("p",{className:"py-20 text-center text-gray-500",children:"Nenhum professor foi encontrado para os filtros selecionados."})]})]})}],47490)}]);
