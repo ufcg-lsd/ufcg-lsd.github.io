@@ -29,3 +29,20 @@ export interface IPageHeader {
     json: any;
   };
 }
+
+export interface IWorkingField {
+  name: string;
+}
+
+export interface IProfessor {
+  name: string;
+  role: string;
+  photo: {
+    url: string;
+  };
+  email?: string;
+  linkedin?: string;
+  github?: string;
+  lattes?: string;
+  workingFieldsCollection: { items: IWorkingField[] };
+}

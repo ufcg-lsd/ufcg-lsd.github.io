@@ -20,8 +20,8 @@ jobs:
           file: ./Dockerfile.production
           tags: my-site:latest
           build-args: |
-            CONTENTFUL_SPACE=${{ secrets.CONTENTFUL_SPACE }}
-            CONTENTFUL_ACCESS_TOKEN=${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
+            NEXT_PUBLIC_CONTENTFUL_SPACE=${{ secrets.NEXT_PUBLIC_CONTENTFUL_SPACE }}
+            NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN=${{ secrets.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN }}
 
       - name: Run container and copy output
         run: |

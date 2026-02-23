@@ -33,8 +33,8 @@ docker-run-dev-mac:
 
 docker-build-prod:
 	docker build \
-		--build-arg CONTENTFUL_ACCESS_TOKEN=${CONTENTFUL_ACCESS_TOKEN} \
-		--build-arg CONTENTFUL_SPACE=${CONTENTFUL_SPACE} \
+		--build-arg NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN=${NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN} \
+		--build-arg NEXT_PUBLIC_CONTENTFUL_SPACE=${NEXT_PUBLIC_CONTENTFUL_SPACE} \
 		-t $(IMAGE_NAME) \
 		-f Dockerfile.production .
 
