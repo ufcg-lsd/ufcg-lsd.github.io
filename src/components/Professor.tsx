@@ -79,9 +79,9 @@ const Professor: React.FC<ProfessorCardProps> = ({ professor }) => {
             }
           `}</style>
 
-          {professor?.workingFieldsCollection?.items.map((field, index) => (
+          {professor?.workingFieldsCollection?.items.map((field) => (
             <span
-              key={index}
+              key={field.name}
               className="inline-block rounded-md bg-gray-200 px-3 py-1 text-sm text-gray-700"
             >
               #{field.name}

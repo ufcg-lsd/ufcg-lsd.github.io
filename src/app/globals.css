@@ -123,17 +123,16 @@
 }
 
 .max-width {
-  /* max-width: var(--max-width); */
-  /* px-4 md:px-12 */
-  padding: 0 4rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding-inline: 4rem;
   box-sizing: border-box;
   width: 100%;
-
 }
 
 @media (max-width: 768px) {
   .max-width {
-    padding: 0 1rem;
+    padding-inline: 1rem;
   }
 }
 

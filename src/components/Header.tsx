@@ -7,20 +7,20 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { MobileMenu } from "./MobileMenu";
 import { Icon } from "./Icon";
-import { background } from "storybook/theming";
 
 export const Header = ({ items }: { items: INavItem[] }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
   return (
     <div
-      className="flex justify-center w-full "
+      className="relative flex justify-center w-full"
       style={{
-        backgroundColor: items.filter((item) => pathname === item.link)[0]
-          .color,
+        backgroundColor: items.find((item) => pathname === item.link)
+          ?.color,
       }}
     >
-      <div className="flex items-center justify-between max-width min-h-16 bg-black/30">
+      <div className="absolute inset-0 bg-black/30" />
+      <div className="relative flex items-center justify-between max-width min-h-16">
         <Image
           src={"/short-logo.png"}
           width={200}
@@ -31,10 +31,10 @@ export const Header = ({ items }: { items: INavItem[] }) => {
         <div className="hidden md:flex">
           {items
             .sort((a, b) => a.order - b.order)
-            .map((item, i) => (
+            .map((item) => (
               <HeaderItem
                 item={item}
-                key={i}
+                key={item.id}
                 selected={pathname === item.link}
               />
             ))}

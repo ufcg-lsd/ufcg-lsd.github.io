@@ -1,5 +1,4 @@
 import { PageFrame } from "@/components/PageFrame";
-import Professor from "@/components/Professor";
 import { ProfessorGrid } from "@/components/ProfessorsGrid";
 import { getContent } from "@/utils/contentful";
 import { INavItem, IPageHeader, IProfessor } from "@/utils/interfaces";
@@ -22,8 +21,6 @@ export default async function Professores() {
   } = await getContent(PROFESSORS_QUERY);
 
   const { title, text } = headers.items[0];
-  console.log(workingFields.items);
-
   return (
     <PageFrame>
       <div className="flex flex-col gap-3 py-4 px-4">

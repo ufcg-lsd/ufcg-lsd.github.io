@@ -18,14 +18,15 @@ export const Footer = ({
   const email = contact.filter((item) => item.id === "email");
   return (
     <div
-      className="flex justify-center w-full "
+      className="relative flex justify-center w-full"
       style={{
-        backgroundColor: navItems.filter((item) => pathname === item.link)[0]
-          .color,
+        backgroundColor: navItems.find((item) => pathname === item.link)
+          ?.color,
       }}
     >
-      <div className="bg-black/30 flex flex-col md:flex-row items-center justify-between w-full px-4 md:px-12 min-h-16 py-4 md:py-16 gap-4">
-        <div className="flex flex-col md:flex-row items-center md:items-start gap-4 max-w-(--max-width) ">
+      <div className="absolute inset-0 bg-black/30" />
+      <div className="relative max-width flex flex-col md:flex-row items-center justify-between min-h-16 py-4 md:py-16 gap-4">
+        <div className="flex flex-col md:flex-row items-center md:items-start gap-4">
           <Image
             src={"logo.png"}
             width={200}
@@ -34,9 +35,9 @@ export const Footer = ({
             alt="LSD logo with the characters combining as one big logo"
           />
           <div className="hidden md:flex flex-col items-center md:items-start gap-2 text-white">
-            {navItems.map((item, i) => (
+            {navItems.map((item) => (
               <Link
-                key={i}
+                key={item.id}
                 href={item.link}
                 className={`hover-button ${
                   pathname === item.link && "font-bold underline"
@@ -56,9 +57,9 @@ export const Footer = ({
               .filter(
                 (item) => item.id !== "email",
               ) /* Filter out the email item */
-              .map((item, i) => (
+              .map((item) => (
                 <a
-                  key={i}
+                  key={item.id}
                   href={item.link}
                   target="_blank"
                   className="hover-button"

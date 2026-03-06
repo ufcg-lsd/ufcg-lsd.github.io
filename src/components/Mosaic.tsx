@@ -13,7 +13,7 @@ export const Mosaic = ({ posts }: { posts: IHomePost[] }) => {
         gap: [4, 8, 12],
         media: [640, 1200, 1444],
       }}
-      render={(item, idx) => <MosaicItem key={idx} item={item} />}
+      render={(item) => <MosaicItem key={item.id} item={item} />}
     />
   );
 };
