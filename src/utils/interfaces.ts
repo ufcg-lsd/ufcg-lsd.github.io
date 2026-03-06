@@ -34,6 +34,18 @@ export interface IWorkingField {
   name: string;
 }
 
+export interface IProject {
+  name: string;
+  link?: string;
+  leader: { name: string };
+  description: { json: any };
+  actionFieldsCollection: { items: IWorkingField[] };
+  graduates: number;
+  underGraduates: number;
+  initDate: string;
+  endDate?: string;
+}
+
 export interface IProfessor {
   name: string;
   role: string;

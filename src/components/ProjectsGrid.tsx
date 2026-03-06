@@ -1,20 +1,20 @@
 "use client";
 
-import { IProfessor } from "@/utils/interfaces";
+import { IProject } from "@/utils/interfaces";
 import { getContent } from "@/utils/contentful";
-import { PROFESSOR_QUERY } from "@/utils/queries";
+import { PROJECT_QUERY } from "@/utils/queries";
 import React, { useState } from "react";
-import Professor from "./Professor";
+import { ProjectCard } from "./ProjectCard";
 import { FilterBar } from "./FilterBar";
 
-const PAGE_SIZE = 12;
+const PAGE_SIZE = 9;
 
-export const ProfessorGrid: React.FC<{
+export const ProjectsGrid: React.FC<{
   tags: { name: string }[];
-  initProfessors: IProfessor[];
-}> = ({ tags = [], initProfessors = [] }) => {
+  initProjects: IProject[];
+}> = ({ tags = [], initProjects = [] }) => {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
-  const [professors, setProfessors] = useState<IProfessor[]>(initProfessors);
+  const [projects, setProjects] = useState<IProject[]>(initProjects);
   const [currentPage, setCurrentPage] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -26,24 +26,24 @@ export const ProfessorGrid: React.FC<{
     setCurrentPage(0);
 
     if (next.length === 0) {
-      setProfessors(initProfessors);
+      setProjects(initProjects);
     } else {
       setIsLoading(true);
-      const data = await getContent<{ docentesCollection: { items: IProfessor[] } }>(
-        PROFESSOR_QUERY,
-        { workingField: next },
+      const data = await getContent<{ projectCollection: { items: IProject[] } }>(
+        PROJECT_QUERY,
+        { actionField: next },
       );
-      setProfessors(data.docentesCollection.items);
+      setProjects(data.projectCollection.items);
       await new Promise((resolve) => setTimeout(resolve, 300));
       setIsLoading(false);
     }
   };
 
-  const totalPages = Math.ceil(professors.length / PAGE_SIZE);
-  const paginated = professors.slice(currentPage * PAGE_SIZE, (currentPage + 1) * PAGE_SIZE);
+  const totalPages = Math.ceil(projects.length / PAGE_SIZE);
+  const paginated = projects.slice(currentPage * PAGE_SIZE, (currentPage + 1) * PAGE_SIZE);
 
   return (
-    <div className="container">
+    <div>
       <FilterBar
         tags={tags}
         selectedTags={selectedTags}
@@ -52,14 +52,14 @@ export const ProfessorGrid: React.FC<{
       <div className="my-6 h-px w-full bg-gray-200" aria-hidden="true" />
       {isLoading ? (
         <p className="py-20 text-center text-gray-500">Carregando...</p>
-      ) : professors.length === 0 ? (
+      ) : paginated.length === 0 ? (
         <p className="py-20 text-center text-gray-500">
-          Nenhum professor foi encontrado para os filtros selecionados.
+          Nenhum projeto foi encontrado para os filtros selecionados.
         </p>
       ) : (
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {paginated.map((prof) => (
-            <Professor key={prof.name} professor={prof} />
+        <div>
+          {paginated.map((proj) => (
+            <ProjectCard key={proj.name} project={proj} />
           ))}
         </div>
       )}

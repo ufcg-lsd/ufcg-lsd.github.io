@@ -97,10 +97,54 @@ export const PROFESSORS_QUERY = `
   }
 `;
 
+export const PROJECTS_QUERY = `
+  query {
+    projectCollection {
+      items {
+        name
+        link
+        leader {
+          name
+        }
+        description {
+          json
+        }
+        actionFieldsCollection {
+          items {
+            name
+          }
+        }
+        graduates
+        underGraduates
+        initDate
+        endDate
+      }
+    }
+    pageHeaderCollection(where: { id: "projetos" }) {
+      items {
+        title
+        text {
+          json
+        }
+      }
+    }
+    navItemsCollection(where: { id: "projetos" }) {
+      items {
+        color
+      }
+    }
+    workingFieldsCollection {
+      items {
+        name
+      }
+    }
+  }
+`;
+
 export const PROFESSOR_QUERY = `
   query GetProfessors($workingField: [String]) {
-    docentesCollection(where: { 
-      workingFields: { name_in: $workingField } 
+    docentesCollection(where: {
+      workingFields: { name_in: $workingField }
     }) {
       items {
         name
@@ -119,7 +163,35 @@ export const PROFESSOR_QUERY = `
           width
           height
         }
-      }   
+      }
+    }
+  }
+`;
+
+export const PROJECT_QUERY = `
+  query GetProjects($actionField: [String]) {
+    projectCollection(where: {
+      actionFields: { name_in: $actionField }
+    }) {
+      items {
+        name
+        link
+        leader {
+          name
+        }
+        description {
+          json
+        }
+        actionFieldsCollection {
+          items {
+            name
+          }
+        }
+        graduates
+        underGraduates
+        initDate
+        endDate
+      }
     }
   }
 `;
