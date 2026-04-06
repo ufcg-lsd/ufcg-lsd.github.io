@@ -43,16 +43,8 @@ export const isColorLight = (color: string): boolean => {
   return hsp > 220;
 };
 
-export const getRandomBrandColor = () => {
-  const colors = [
-    '#5474B7', 
-    '#7069AE', 
-    '#AD689E', 
-    '#DE5764', 
-    '#DD9356'
-  ];
+const BRAND_COLORS = ['#5474B7', '#7069AE', '#AD689E', '#DE5764', '#DD9356'];
 
-  const randomIndex = Math.floor(Math.random() * colors.length);
-  
-  return colors[randomIndex];
+export const getRandomBrandColor = (colors: string[] = BRAND_COLORS) => {
+  return colors[Math.floor(Math.random() * colors.length)];
 }

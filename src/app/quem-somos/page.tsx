@@ -1,7 +1,7 @@
 import { InfoCard } from "@/components/InfoCard";
 import { PageFrame } from "@/components/PageFrame";
 import { getContent } from "@/utils/contentful";
-import { IValues } from "@/utils/interfaces";
+import { INavItem, IValues } from "@/utils/interfaces";
 import { QUEM_SOMOS_QUERY } from "@/utils/queries";
 import { getRandomBrandColor } from "@/utils/utils";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
@@ -9,10 +9,16 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 export const revalidate = 60;
 
 export default async function QuemSomos() {
-  const { valuesCollection }: { valuesCollection: { items: IValues[] } } =
-    await getContent(QUEM_SOMOS_QUERY);
+  const {
+    valuesCollection,
+    navItemsCollection,
+  }: {
+    valuesCollection: { items: IValues[] };
+    navItemsCollection: { items: INavItem[] };
+  } = await getContent(QUEM_SOMOS_QUERY);
 
   const { mission, vision, values } = valuesCollection.items[0];
+  const colors = navItemsCollection.items.map((i) => i.color);
 
   return (
     <PageFrame>
@@ -23,16 +29,16 @@ export default async function QuemSomos() {
         <hr className="border-gray-200" />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <InfoCard emoji="🔭" title="Visão" color={getRandomBrandColor()}>
+          <InfoCard emoji="🔭" title="Visão" color={getRandomBrandColor(colors)}>
             {documentToReactComponents(vision.json)}
           </InfoCard>
 
-          <InfoCard emoji="🚀" title="Missão" color={getRandomBrandColor()}>
+          <InfoCard emoji="🚀" title="Missão" color={getRandomBrandColor(colors)}>
             {documentToReactComponents(mission.json)}
           </InfoCard>
         </div>
 
-        <InfoCard emoji="⭐" title="Valores" color={getRandomBrandColor()}>
+        <InfoCard emoji="⭐" title="Valores" color={getRandomBrandColor(colors)}>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {values.map((value) => (
               <div

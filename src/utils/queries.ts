@@ -154,6 +154,11 @@ export const QUEM_SOMOS_QUERY = `
         values
       }
     }
+    navItemsCollection {
+      items {
+        color
+      }
+    }
   }
 `;
 
