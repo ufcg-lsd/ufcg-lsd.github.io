@@ -2,6 +2,7 @@
 
 import { INavItem } from "@/utils/interfaces";
 import Image from "next/image";
+import Link from "next/link";
 import { HeaderItem } from "./HeaderItem";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -21,13 +22,15 @@ export const Header = ({ items }: { items: INavItem[] }) => {
     >
       <div className="absolute inset-0 bg-black/30" />
       <div className="relative flex items-center justify-between max-width min-h-16">
-        <Image
-          src={"/short-logo.png"}
-          width={200}
-          height={100}
-          className="w-10 md:w-20 h-fit"
-          alt="LSD logo with the characters combining as one big logo"
-        />
+        <Link href="/">
+          <Image
+            src={"/short-logo.png"}
+            width={200}
+            height={100}
+            className="w-10 md:w-20 h-fit"
+            alt="LSD logo with the characters combining as one big logo"
+          />
+        </Link>
         <div className="hidden md:flex">
           {items
             .sort((a, b) => a.order - b.order)
