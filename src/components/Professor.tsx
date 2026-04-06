@@ -6,9 +6,10 @@ import Image from "next/image";
 
 interface ProfessorCardProps {
   professor: IProfessor;
+  onTagSelect?: (tag: string) => void;
 }
 
-const Professor: React.FC<ProfessorCardProps> = ({ professor }) => {
+const Professor: React.FC<ProfessorCardProps> = ({ professor, onTagSelect }) => {
   return (
     <div className="max-w-sm overflow-hidden bg-white font-sans">
       <div className="aspect-square w-full overflow-hidden">
@@ -21,11 +22,15 @@ const Professor: React.FC<ProfessorCardProps> = ({ professor }) => {
         />
       </div>
 
-      <div className="py-4">
-        <h2 className="text-xl font-bold text-gray-900">{professor.name}</h2>
-        <p className="mt-1 text-sm text-gray-700">{professor.role}</p>
+      <div className="py-4 flex flex-col gap-2">
+        <div>
+          <h2 className="text-xl font-bold text-gray-800 p-0">
+            {professor.name}
+          </h2>
+          <p className="text-sm text-gray-400">{professor.role}</p>
+        </div>
 
-        <div className="mt-3 flex items-center gap-2 transition duration-300 text-gray-500">
+        <div className="flex items-center gap-2 transition duration-300 text-gray-500">
           {professor.email && (
             <a
               href={`mailto:${professor.email}`}
@@ -67,7 +72,7 @@ const Professor: React.FC<ProfessorCardProps> = ({ professor }) => {
         </div>
 
         <div
-          className="mt-6 flex gap-2 overflow-x-auto whitespace-nowrap scrollbar-hide"
+          className="flex gap-2 overflow-x-auto whitespace-nowrap scrollbar-hide"
           style={{
             msOverflowStyle: "none" /* IE and Edge */,
             scrollbarWidth: "none" /* Firefox */,
@@ -80,12 +85,13 @@ const Professor: React.FC<ProfessorCardProps> = ({ professor }) => {
           `}</style>
 
           {professor?.workingFieldsCollection?.items.map((field) => (
-            <span
+            <button
               key={field.name}
-              className="inline-block rounded-md bg-gray-200 px-3 py-1 text-sm text-gray-700"
+              onClick={() => onTagSelect?.(field.name)}
+              className="inline-block rounded-md bg-gray-200 px-3 py-1 text-sm text-gray-700 hover:bg-gray-300 transition-colors cursor-pointer"
             >
               #{field.name}
-            </span>
+            </button>
           ))}
         </div>
       </div>

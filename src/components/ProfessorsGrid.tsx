@@ -15,7 +15,7 @@ export const ProfessorsGrid: React.FC<{
   tags: { name: string }[];
   initProfessors: IProfessor[];
 }> = ({ tags = [], initProfessors = [] }) => {
-  const { selectedTags, currentPage, setCurrentPage, isLoading, totalPages, paginated, handleTagSelect } =
+  const { selectedTags, currentPage, setCurrentPage, isLoading, totalPages, paginated, handleTagSelect, handleTagSelectOnly } =
     usePaginatedFilter(initProfessors, PAGE_SIZE, async (activeTags) => {
       const data = await getContent<{ docentesCollection: { items: IProfessor[] } }>(
         PROFESSORS_FILTERED_QUERY,
@@ -35,9 +35,9 @@ export const ProfessorsGrid: React.FC<{
           Nenhum professor foi encontrado para os filtros selecionados.
         </p>
       ) : (
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 items-start">
           {paginated.map((prof) => (
-            <Professor key={prof.name} professor={prof} />
+            <Professor key={prof.name} professor={prof} onTagSelect={handleTagSelectOnly} />
           ))}
         </div>
       )}

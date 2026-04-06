@@ -12,10 +12,7 @@ export function usePaginatedFilter<T>(
   const [currentPage, setCurrentPage] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleTagSelect = async (tagName: string) => {
-    const next = selectedTags.includes(tagName)
-      ? selectedTags.filter((t) => t !== tagName)
-      : [...selectedTags, tagName];
+  const applyTags = async (next: string[]) => {
     setSelectedTags(next);
     setCurrentPage(0);
 
@@ -29,8 +26,17 @@ export function usePaginatedFilter<T>(
     }
   };
 
+  const handleTagSelect = (tagName: string) => {
+    const next = selectedTags.includes(tagName)
+      ? selectedTags.filter((t) => t !== tagName)
+      : [...selectedTags, tagName];
+    return applyTags(next);
+  };
+
+  const handleTagSelectOnly = (tagName: string) => applyTags([tagName]);
+
   const totalPages = Math.ceil(items.length / pageSize);
   const paginated = items.slice(currentPage * pageSize, (currentPage + 1) * pageSize);
 
-  return { selectedTags, items, currentPage, setCurrentPage, isLoading, totalPages, paginated, handleTagSelect };
+  return { selectedTags, items, currentPage, setCurrentPage, isLoading, totalPages, paginated, handleTagSelect, handleTagSelectOnly };
 }
