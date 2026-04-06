@@ -1,3 +1,5 @@
+import { cn } from "@/lib/utils";
+
 interface FilterBarProps {
   tags: { name: string }[];
   selectedTags: string[];
@@ -13,9 +15,10 @@ export const FilterBar: React.FC<FilterBarProps> = ({ selectedTags, tags, onTagS
           <button
             key={tag.name}
             onClick={() => onTagSelect(tag.name)}
-            className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors cursor-pointer ${
-              selectedTags.includes(tag.name) ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-            }`}
+            className={cn(
+              "rounded-lg px-4 py-2 text-sm font-medium transition-colors cursor-pointer",
+              selectedTags.includes(tag.name) ? "bg-blue-600 text-white" : "bg-gray-200 text-gray-700 hover:bg-gray-300",
+            )}
           >
             #{tag.name}
           </button>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Mail, Linkedin } from "lucide-react"; // Using lucide for icons
+import { Mail } from "lucide-react";
 import { IProfessor } from "@/utils/interfaces";
 import { Icon } from "./Icon";
 import Image from "next/image";

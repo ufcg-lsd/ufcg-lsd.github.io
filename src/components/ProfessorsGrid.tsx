@@ -2,57 +2,35 @@
 
 import { IProfessor } from "@/utils/interfaces";
 import { getContent } from "@/utils/contentful";
-import { PROFESSOR_QUERY } from "@/utils/queries";
-import React, { useState } from "react";
+import { PROFESSORS_FILTERED_QUERY } from "@/utils/queries";
+import React from "react";
 import Professor from "./Professor";
 import { FilterBar } from "./FilterBar";
+import { PaginationControls } from "./PaginationControls";
+import { usePaginatedFilter } from "@/hooks/usePaginatedFilter";
 
 const PAGE_SIZE = 12;
 
-export const ProfessorGrid: React.FC<{
+export const ProfessorsGrid: React.FC<{
   tags: { name: string }[];
   initProfessors: IProfessor[];
 }> = ({ tags = [], initProfessors = [] }) => {
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
-  const [professors, setProfessors] = useState<IProfessor[]>(initProfessors);
-  const [currentPage, setCurrentPage] = useState(0);
-  const [isLoading, setIsLoading] = useState(false);
-
-  const handleUpdate = async (tagName: string) => {
-    const next = selectedTags.includes(tagName)
-      ? selectedTags.filter((t) => t !== tagName)
-      : [...selectedTags, tagName];
-    setSelectedTags(next);
-    setCurrentPage(0);
-
-    if (next.length === 0) {
-      setProfessors(initProfessors);
-    } else {
-      setIsLoading(true);
+  const { selectedTags, currentPage, setCurrentPage, isLoading, totalPages, paginated, handleTagSelect } =
+    usePaginatedFilter(initProfessors, PAGE_SIZE, async (activeTags) => {
       const data = await getContent<{ docentesCollection: { items: IProfessor[] } }>(
-        PROFESSOR_QUERY,
-        { workingField: next },
+        PROFESSORS_FILTERED_QUERY,
+        { workingField: activeTags },
       );
-      setProfessors(data.docentesCollection.items);
-      await new Promise((resolve) => setTimeout(resolve, 300));
-      setIsLoading(false);
-    }
-  };
-
-  const totalPages = Math.ceil(professors.length / PAGE_SIZE);
-  const paginated = professors.slice(currentPage * PAGE_SIZE, (currentPage + 1) * PAGE_SIZE);
+      return data.docentesCollection.items;
+    });
 
   return (
     <div className="container">
-      <FilterBar
-        tags={tags}
-        selectedTags={selectedTags}
-        onTagSelect={handleUpdate}
-      />
+      <FilterBar tags={tags} selectedTags={selectedTags} onTagSelect={handleTagSelect} />
       <div className="my-6 h-px w-full bg-gray-200" aria-hidden="true" />
       {isLoading ? (
         <p className="py-20 text-center text-gray-500">Carregando...</p>
-      ) : professors.length === 0 ? (
+      ) : paginated.length === 0 ? (
         <p className="py-20 text-center text-gray-500">
           Nenhum professor foi encontrado para os filtros selecionados.
         </p>
@@ -63,24 +41,7 @@ export const ProfessorGrid: React.FC<{
           ))}
         </div>
       )}
-      {totalPages > 1 && (
-        <div className="mt-8 flex justify-between text-sm text-gray-600">
-          <button
-            onClick={() => setCurrentPage((p) => p - 1)}
-            disabled={currentPage === 0}
-            className="flex items-center gap-1 disabled:opacity-30 hover:text-gray-900 cursor-pointer transition-colors"
-          >
-            ← Anterior
-          </button>
-          <button
-            onClick={() => setCurrentPage((p) => p + 1)}
-            disabled={currentPage >= totalPages - 1}
-            className="flex items-center gap-1 disabled:opacity-30 hover:text-gray-900 cursor-pointer transition-colors"
-          >
-            Próximo →
-          </button>
-        </div>
-      )}
+      <PaginationControls currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
     </div>
   );
 };

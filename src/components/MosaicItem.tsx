@@ -18,7 +18,7 @@ export const MosaicItem = ({ item }: { item: IHomePost }) => {
           src={item?.post?.url || ""}
           width={item?.post?.width}
           height={item?.post?.height}
-          alt={""}
+          alt={item.id}
           className="z-0 w-full object-cover"
         />
       </Link>

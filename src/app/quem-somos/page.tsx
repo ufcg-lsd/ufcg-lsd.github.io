@@ -7,7 +7,10 @@ export default async function QuemSomos() {
 
   return (
     <PageFrame>
-      <p>oii</p>
+      <div className="flex flex-col items-center justify-center py-32 text-center text-gray-500">
+        <p className="text-2xl font-semibold">Em breve</p>
+        <p className="mt-2 text-sm">Esta página está em construção.</p>
+      </div>
     </PageFrame>
   );
 }

@@ -141,7 +141,7 @@ export const PROJECTS_QUERY = `
   }
 `;
 
-export const PROFESSOR_QUERY = `
+export const PROFESSORS_FILTERED_QUERY = `
   query GetProfessors($workingField: [String]) {
     docentesCollection(where: {
       workingFields: { name_in: $workingField }
@@ -168,7 +168,7 @@ export const PROFESSOR_QUERY = `
   }
 `;
 
-export const PROJECT_QUERY = `
+export const PROJECTS_FILTERED_QUERY = `
   query GetProjects($actionField: [String]) {
     projectCollection(where: {
       actionFields: { name_in: $actionField }

@@ -1,3 +1,5 @@
+import { Document } from "@contentful/rich-text-types";
+
 export interface INavItem {
   id: string;
   text: string;
@@ -26,7 +28,7 @@ export interface IPageHeader {
   id: string;
   title: string;
   text: {
-    json: any;
+    json: Document;
   };
 }
 
@@ -38,7 +40,7 @@ export interface IProject {
   name: string;
   link?: string;
   leader: { name: string };
-  description: { json: any };
+  description: { json: Document };
   actionFieldsCollection: { items: IWorkingField[] };
   graduates: number;
   underGraduates: number;

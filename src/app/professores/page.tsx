@@ -1,5 +1,5 @@
 import { PageFrame } from "@/components/PageFrame";
-import { ProfessorGrid } from "@/components/ProfessorsGrid";
+import { ProfessorsGrid } from "@/components/ProfessorsGrid";
 import { getContent } from "@/utils/contentful";
 import { INavItem, IPageHeader, IProfessor } from "@/utils/interfaces";
 import { PROFESSORS_QUERY } from "@/utils/queries";
@@ -31,7 +31,7 @@ export default async function Professores() {
           <h1 className="text-3xl font-bold">{title}</h1>
           <article>{documentToReactComponents(text.json)}</article>
         </div>
-        <ProfessorGrid
+        <ProfessorsGrid
           tags={workingFields.items}
           initProfessors={docentesCollection.items}
         />
