@@ -48,6 +48,12 @@ export interface IProject {
   endDate?: string;
 }
 
+export interface IValues {
+  mission: { json: Document };
+  vision: { json: Document };
+  values: string[];
+}
+
 export interface IProfessor {
   name: string;
   role: string;

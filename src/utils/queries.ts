@@ -141,6 +141,22 @@ export const PROJECTS_QUERY = `
   }
 `;
 
+export const QUEM_SOMOS_QUERY = `
+  query {
+    valuesCollection {
+      items {
+        mission {
+          json
+        }
+        vision {
+          json
+        }
+        values
+      }
+    }
+  }
+`;
+
 export const PROFESSORS_FILTERED_QUERY = `
   query GetProfessors($workingField: [String]) {
     docentesCollection(where: {
