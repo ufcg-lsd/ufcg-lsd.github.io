@@ -15,7 +15,7 @@ export const ProjectsGrid: React.FC<{
   tags: { name: string }[];
   initProjects: IProject[];
 }> = ({ tags = [], initProjects = [] }) => {
-  const { selectedTags, currentPage, setCurrentPage, isLoading, totalPages, paginated, handleTagSelect } =
+  const { selectedTags, currentPage, setCurrentPage, isLoading, totalPages, paginated, handleTagSelect, handleTagSelectOnly } =
     usePaginatedFilter(initProjects, PAGE_SIZE, async (activeTags) => {
       const data = await getContent<{ projectCollection: { items: IProject[] } }>(
         PROJECTS_FILTERED_QUERY,
@@ -37,7 +37,7 @@ export const ProjectsGrid: React.FC<{
       ) : (
         <div>
           {paginated.map((proj) => (
-            <ProjectCard key={proj.name} project={proj} />
+            <ProjectCard key={proj.name} project={proj} onTagSelect={handleTagSelectOnly} />
           ))}
         </div>
       )}

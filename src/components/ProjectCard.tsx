@@ -4,7 +4,7 @@ import { ExternalLink } from "lucide-react";
 
 const getYear = (dateStr: string) => new Date(dateStr).getFullYear();
 
-export const ProjectCard = ({ project }: { project: IProject }) => {
+export const ProjectCard = ({ project, onTagSelect }: { project: IProject; onTagSelect?: (tag: string) => void }) => {
   const endLabel = project.endDate ? getYear(project.endDate) : "Atual";
 
   return (
@@ -42,12 +42,13 @@ export const ProjectCard = ({ project }: { project: IProject }) => {
       <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
         <div className="flex flex-wrap gap-2">
           {project.actionFieldsCollection.items.map((field) => (
-            <span
+            <button
               key={field.name}
-              className="inline-block rounded-md bg-gray-200 px-3 py-1 text-sm text-gray-700"
+              onClick={() => onTagSelect?.(field.name)}
+              className="inline-block rounded-md bg-gray-200 px-3 py-1 text-sm text-gray-700 hover:bg-gray-300 transition-colors cursor-pointer"
             >
               #{field.name}
-            </span>
+            </button>
           ))}
         </div>
         {(project.graduates != null || project.underGraduates != null) && (

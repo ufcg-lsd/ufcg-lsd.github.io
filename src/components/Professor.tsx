@@ -71,19 +71,7 @@ const Professor: React.FC<ProfessorCardProps> = ({ professor, onTagSelect }) => 
           )}
         </div>
 
-        <div
-          className="flex gap-2 overflow-x-auto whitespace-nowrap scrollbar-hide"
-          style={{
-            msOverflowStyle: "none" /* IE and Edge */,
-            scrollbarWidth: "none" /* Firefox */,
-          }}
-        >
-          <style>{`
-            .scrollbar-hide::-webkit-scrollbar {
-              display: none;
-            }
-          `}</style>
-
+        <div className="flex gap-2 overflow-x-auto whitespace-nowrap scrollbar-hide">
           {professor?.workingFieldsCollection?.items.map((field) => (
             <button
               key={field.name}

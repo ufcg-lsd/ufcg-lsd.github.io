@@ -20,8 +20,11 @@ export function usePaginatedFilter<T>(
       setItems(initItems);
     } else {
       setIsLoading(true);
-      const fetched = await fetcher(next);
-      setItems(fetched);
+      const [fetched] = await Promise.all([
+        fetcher(next),
+        new Promise((resolve) => setTimeout(resolve, 500)),
+      ]);
+      setItems(fetched as T[]);
       setIsLoading(false);
     }
   };

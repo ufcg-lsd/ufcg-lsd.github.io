@@ -10,7 +10,7 @@ interface InfoCardProps {
 export const InfoCard = ({ emoji, title, color, children }: InfoCardProps) => {
   return (
     <div
-      className="rounded-xl border border-gray-200 border-t-4 p-6 bg-white shadow-sm flex flex-col gap-4"
+      className="rounded-xl border-t-4 p-6 bg-white flex flex-col gap-4"
       style={{ borderTopColor: color }}
     >
       <div className="flex items-center gap-3">
