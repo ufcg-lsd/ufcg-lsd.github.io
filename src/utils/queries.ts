@@ -159,6 +159,17 @@ export const QUEM_SOMOS_QUERY = `
         color
       }
     }
+    photosGalleryCollection {
+      items {
+        title
+        description
+        image {
+          url
+          width
+          height
+        }
+      }
+    }
     navItemsCollection {
       items {
         color

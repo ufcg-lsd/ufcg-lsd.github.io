@@ -54,6 +54,12 @@ export interface IValues {
   values: string[];
 }
 
+export interface IPhotoGallery {
+  title: string;
+  description: string;
+  image: { url: string; width: number; height: number };
+}
+
 export interface IProfessor {
   name: string;
   role: string;

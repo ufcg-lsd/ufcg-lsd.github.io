@@ -1,7 +1,8 @@
 import { InfoCard } from "@/components/InfoCard";
 import { PageFrame } from "@/components/PageFrame";
+import { PhotoGalleryGrid } from "@/components/PhotoGalleryGrid";
 import { getContent } from "@/utils/contentful";
-import { INavItem, IValues } from "@/utils/interfaces";
+import { INavItem, IPhotoGallery, IValues } from "@/utils/interfaces";
 import { QUEM_SOMOS_QUERY } from "@/utils/queries";
 import { getRandomBrandColor } from "@/utils/utils";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
@@ -13,10 +14,12 @@ export default async function QuemSomos() {
     valuesCollection,
     navItemsCollection,
     pageNavItem,
+    photosGalleryCollection,
   }: {
     valuesCollection: { items: IValues[] };
     navItemsCollection: { items: INavItem[] };
     pageNavItem: { items: INavItem[] };
+    photosGalleryCollection: { items: IPhotoGallery[] };
   } = await getContent(QUEM_SOMOS_QUERY);
 
   const { mission, vision, values } = valuesCollection.items[0];
@@ -61,6 +64,9 @@ export default async function QuemSomos() {
             ))}
           </div>
         </InfoCard>
+
+        <h2 className="text-2xl font-semibold text-gray-800">Galeria de Fotos</h2>
+        <PhotoGalleryGrid photos={photosGalleryCollection.items} />
       </div>
     </PageFrame>
   );
