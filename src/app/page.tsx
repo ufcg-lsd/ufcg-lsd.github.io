@@ -36,7 +36,7 @@ export default async function Home() {
             </article>
           </div>
           <Image
-            className="block w-full max-w-32 md:max-w-60 h-fit"
+            className="hidden lg:block w-full max-w-32 md:max-w-60 h-fit"
             src="lsd.png"
             alt=""
             height={200}
