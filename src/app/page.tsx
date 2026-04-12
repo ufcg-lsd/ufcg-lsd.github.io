@@ -28,15 +28,15 @@ export default async function Home() {
     <PageFrame>
       <div className="flex flex-col gap-4">
         <BannerCarousel items={banners?.items || []} />
-        <div className="flex flex-col-reverse lg:flex-row gap-4 h-full justify-between items-center">
-          <div className="flex flex-col items-center lg:items-start">
-            <h1 className="text-2xl lg:text-4xl font-bold w-fit text-center">{title}</h1>
-            <article className="text-md lg:text-lg text-center lg:text-start ">
+        <div className="flex lg:flex-row gap-4 h-full justify-between items-center">
+          <div className="flex flex-col items-start">
+            <h1 className="text-xl md:text-2xl lg:text-4xl font-bold w-fit text-center">{title}</h1>
+            <article className="text-sm lg:text-lg text-start ">
               {documentToReactComponents(text.json)}
             </article>
           </div>
           <Image
-            className="hidden lg:block w-full max-w-60 h-fit"
+            className="block w-full max-w-32 md:max-w-60 h-fit"
             src="lsd.png"
             alt=""
             height={200}
