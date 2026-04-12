@@ -31,6 +31,7 @@ export default async function Professores() {
           <h1 className="text-3xl font-bold">{title}</h1>
           <article>{documentToReactComponents(text.json)}</article>
         </div>
+        <hr className="border-gray-200" />
         <ProfessorsGrid
           tags={workingFields.items}
           initProfessors={docentesCollection.items}

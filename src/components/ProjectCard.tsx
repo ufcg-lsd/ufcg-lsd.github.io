@@ -4,13 +4,19 @@ import { ExternalLink } from "lucide-react";
 
 const getYear = (dateStr: string) => new Date(dateStr).getFullYear();
 
-export const ProjectCard = ({ project, onTagSelect }: { project: IProject; onTagSelect?: (tag: string) => void }) => {
+export const ProjectCard = ({
+  project,
+  onTagSelect,
+}: {
+  project: IProject;
+  onTagSelect?: (tag: string) => void;
+}) => {
   const endLabel = project.endDate ? getYear(project.endDate) : "Atual";
 
   return (
     <div className="py-6 border-b border-gray-200 hover:bg-gray-100 rounded-lg p-4 transition duration-300 slast:border-b-0">
-      <div className="flex items-center justify-between gap-4">
-        <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+      <div className="flex  justify-between gap-4">
+        <div className="flex w-full  flex-wrap flex-col items-start gap-x-2 gap-y-1">
           {project.link ? (
             <a
               href={project.link}
@@ -53,9 +59,19 @@ export const ProjectCard = ({ project, onTagSelect }: { project: IProject; onTag
         </div>
         {(project.graduates != null || project.underGraduates != null) && (
           <span className="text-sm text-gray-600 shrink-0">
-            {project.graduates != null && <><strong>{project.graduates}</strong> Graduados</>}
-            {project.graduates != null && project.underGraduates != null && ", "}
-            {project.underGraduates != null && <><strong>{project.underGraduates}</strong> Alunos</>}
+            {project.graduates != null && (
+              <>
+                <strong>{project.graduates}</strong> Graduados
+              </>
+            )}
+            {project.graduates != null &&
+              project.underGraduates != null &&
+              ", "}
+            {project.underGraduates != null && (
+              <>
+                <strong>{project.underGraduates}</strong> Alunos
+              </>
+            )}
           </span>
         )}
       </div>

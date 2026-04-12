@@ -25,7 +25,7 @@ export const ProjectsGrid: React.FC<{
     });
 
   return (
-    <div>
+    <div className="py-2">
       <FilterBar tags={tags} selectedTags={selectedTags} onTagSelect={handleTagSelect} />
       <div className="my-6 h-px w-full bg-gray-200" aria-hidden="true" />
       {isLoading ? (

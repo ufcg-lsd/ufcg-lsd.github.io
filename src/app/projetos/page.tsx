@@ -32,6 +32,7 @@ export default async function Projetos() {
           <h1 className="text-3xl font-bold">{title}</h1>
           <article>{documentToReactComponents(text.json)}</article>
         </div>
+        <hr className="border-gray-200" />
         <ProjectsGrid
           tags={workingFields.items}
           initProjects={projectCollection.items}
