@@ -35,7 +35,7 @@ export const ProfessorsGrid: React.FC<{
           Nenhum professor foi encontrado para os filtros selecionados.
         </p>
       ) : (
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 items-start">
+        <div className="grid gap-8 grid-cols-2 lg:grid-cols-4 items-start">
           {paginated.map((prof) => (
             <Professor key={prof.name} professor={prof} onTagSelect={handleTagSelectOnly} />
           ))}

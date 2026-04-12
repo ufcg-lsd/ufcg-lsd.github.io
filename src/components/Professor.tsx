@@ -12,19 +12,19 @@ interface ProfessorCardProps {
 const Professor: React.FC<ProfessorCardProps> = ({ professor, onTagSelect }) => {
   return (
     <div className="max-w-sm overflow-hidden bg-white font-sans">
-      <div className="aspect-square w-full overflow-hidden">
+      <div className="aspect-square w-full overflow-hidden rounded-xl">
         <Image
           src={professor.photo.url}
           width={800}
           height={800}
           alt={professor.name}
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover rounded-xl transition-transform duration-300 hover:scale-105"
         />
       </div>
 
       <div className="py-4 flex flex-col gap-2">
         <div>
-          <h2 className="text-xl font-bold text-gray-800 p-0">
+          <h2 className="text-md md:text-lg font-bold text-gray-800 p-0">
             {professor.name}
           </h2>
           <p className="text-sm text-gray-400">{professor.role}</p>
