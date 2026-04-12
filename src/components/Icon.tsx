@@ -15,6 +15,7 @@ export const Icon = ({
   "aria-label"?: string;
   onClick?: React.MouseEventHandler<SVGSVGElement>;
   className?: string;
+  style?: React.CSSProperties;
 }) => {
   return (
     <svg
@@ -22,6 +23,7 @@ export const Icon = ({
       onClick={onClick}
       width={size ?? width}
       height={size ?? height}
+      fill="currentColor"
     >
       <use href={`/sprite.svg#${id}`} />
     </svg>

@@ -42,16 +42,16 @@ export default async function QuemSomos() {
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <InfoCard emoji="🔭" title="Visão" color={getRandomBrandColor(colors)}>
+          <InfoCard icon="eye" title="Visão" color={getRandomBrandColor(colors)}>
             {documentToReactComponents(vision.json)}
           </InfoCard>
 
-          <InfoCard emoji="🚀" title="Missão" color={getRandomBrandColor(colors)}>
+          <InfoCard icon="target" title="Missão" color={getRandomBrandColor(colors)}>
             {documentToReactComponents(mission.json)}
           </InfoCard>
         </div>
 
-        <InfoCard emoji="⭐" title="Valores" color={getRandomBrandColor(colors)}>
+        <InfoCard icon="star" title="Valores" color={getRandomBrandColor(colors)}>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {values.map((value) => (
               <div
