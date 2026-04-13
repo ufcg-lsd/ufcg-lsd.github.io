@@ -60,6 +60,11 @@ export interface IPhotoGallery {
   image: { url: string; width: number; height: number };
 }
 
+export interface IFacaParte {
+  text: { json: Document };
+  thumb: { url: string; width: number; height: number };
+}
+
 export interface IProfessor {
   name: string;
   role: string;

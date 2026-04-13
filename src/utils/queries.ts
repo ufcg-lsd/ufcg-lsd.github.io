@@ -143,6 +143,14 @@ export const PROJECTS_QUERY = `
 
 export const QUEM_SOMOS_QUERY = `
   query {
+    pageHeaderCollection(where: { id: "quem-somos" }) {
+      items {
+        title
+        text {
+          json
+        }
+      }
+    }
     valuesCollection {
       items {
         mission {
@@ -173,6 +181,36 @@ export const QUEM_SOMOS_QUERY = `
     navItemsCollection {
       items {
         color
+      }
+    }
+  }
+`;
+
+export const FACA_PARTE_QUERY = `
+  query {
+    pageHeaderCollection(where: { id: "faca-parte" }) {
+      items {
+        title
+        text {
+          json
+        }
+      }
+    }
+    navItemsCollection(where: { id: "faca-parte" }) {
+      items {
+        color
+      }
+    }
+    facaParteCollection {
+      items {
+        text {
+          json
+        }
+        thumb {
+          url
+          width
+          height
+        }
       }
     }
   }
