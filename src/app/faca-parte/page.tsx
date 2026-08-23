@@ -3,7 +3,6 @@ import { getContent } from "@/utils/contentful";
 import { IFacaParte, INavItem, IPageHeader } from "@/utils/interfaces";
 import { FACA_PARTE_QUERY } from "@/utils/queries";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import { Mail } from "lucide-react";
 import Image from "next/image";
 
 export const revalidate = 60;
