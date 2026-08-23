@@ -31,7 +31,8 @@ export const HOME_QUERY = `
           height
         }
         link
-      }    
+        backgroundColor
+      }
     }
     mainBannerCollection {
       items {
@@ -49,19 +50,19 @@ export const HOME_QUERY = `
         }
       }
     }
+    publicationsCollection(order: date_DESC, limit: 7) {
+      items {
+        title
+        authors
+        venue
+        field
+        link
+        date
+      }
+    }
   }
 `;
     
-    // publicationCollection(order: date_DESC, limit: 5) {
-    //   items {
-    //     title
-    //     authors
-    //     venue
-    //     field
-    //     link
-    //     date
-    //   }
-    // }
     export const PROFESSORS_QUERY = `
   query {
     docentesCollection {

@@ -33,6 +33,7 @@ export function BannerCarousel({ items }: { items: IMainBanner[] }) {
                 width={1200}
                 height={1200}
                 className="w-full object-center"
+                priority={index === 0}
               />
             </div>
           </CarouselItem>

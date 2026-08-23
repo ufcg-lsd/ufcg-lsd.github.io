@@ -20,62 +20,17 @@ export default async function Home() {
     homePostCollection: posts,
     mainBannerCollection: banners,
     pageHeaderCollection: headers,
-    // publicationCollection: publications,
+    publicationsCollection: publications,
   }: {
     homePostCollection: { items: IHomePost[] };
     mainBannerCollection: { items: IMainBanner[] };
     pageHeaderCollection: { items: IPageHeader[] };
-    // publicationCollection: { items: IPublication[] };
+    publicationsCollection: { items: IPublication[] };
   } = await getContent(HOME_QUERY);
 
   const { title, text } = headers.items.filter(
     (header) => header.id == "home",
   )[0];
-
-  const publications = {
-    items: [
-      {
-        title: "Fault-Tolerant Consensus in Large-Scale Distributed Systems",
-        authors: "A. Silva, B. Souza, C. Lima",
-        venue: "IEEE INFOCOM 2026",
-        field: "Sistemas Distribuídos",
-        link: "https://doi.org/10.1109/INFOCOM.2026.0001",
-        date: "2026-04-15",
-      },
-      {
-        title: "Energy-Aware Task Scheduling for Edge Computing Environments",
-        authors: "D. Oliveira, E. Costa",
-        venue: "ACM Transactions on Autonomous and Adaptive Systems",
-        field: "Computação em Nuvem",
-        link: "https://doi.org/10.1145/TAAS.2026.0002",
-        date: "2026-02-10",
-      },
-      {
-        title: "A Survey on Byzantine Fault Tolerance for Blockchain Networks",
-        authors: "F. Pereira, G. Almeida, H. Rocha",
-        venue: "Journal of Parallel and Distributed Computing",
-        field: "Blockchain",
-        link: "https://doi.org/10.1016/JPDC.2025.0003",
-        date: "2025-11-20",
-      },
-      {
-        title: "Adaptive Load Balancing in Microservice Architectures",
-        authors: "I. Santos, J. Ferreira",
-        venue: "Simpósio Brasileiro de Redes de Computadores (SBRC) 2025",
-        field: "Redes de Computadores",
-        link: "https://doi.org/10.5753/SBRC.2025.0004",
-        date: "2025-06-05",
-      },
-      {
-        title: "Privacy-Preserving Data Aggregation for IoT Networks",
-        authors: "K. Nascimento, L. Barbosa, M. Cardoso",
-        venue: "IEEE Transactions on Dependable and Secure Computing",
-        field: "Segurança da Informação",
-        link: "https://doi.org/10.1109/TDSC.2025.0005",
-        date: "2025-03-18",
-      },
-    ],
-  };
 
   return (
     <PageFrame>

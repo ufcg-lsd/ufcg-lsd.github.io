@@ -1,25 +1,22 @@
 import { IHomePost } from "@/utils/interfaces";
-import { getRandomBrandColor } from "@/utils/utils";
+import { getStableBrandColor } from "@/utils/utils";
 import Image from "next/image";
 import Link from "next/link";
 
 export const MosaicItem = ({ item }: { item: IHomePost }) => {
   return (
     <div
-      className={`group relative flex items-center justify-between flex-1 bg-red-50 rounded-lg overflow-hidden hover:opacity-75 transition-all duration-300`}
+      className="group relative aspect-5/3 flex items-center justify-between rounded-lg overflow-hidden hover:opacity-75 transition-all duration-300"
       style={{
-        width: "100%",
-        height: "auto",
-        backgroundColor: getRandomBrandColor(),
+        backgroundColor: item.backgroundColor || getStableBrandColor(item.id),
       }}
     >
-      <Link href={item.link || "/"}>
+      <Link href={item.link || "/"} className="relative block w-full h-full">
         <Image
           src={item?.post?.url || ""}
-          width={item?.post?.width}
-          height={item?.post?.height}
           alt={item.id}
-          className="z-0 w-full object-cover"
+          fill
+          className="z-10 object-contain"
         />
       </Link>
     </div>

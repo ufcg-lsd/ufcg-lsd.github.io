@@ -2,18 +2,26 @@
 
 import { IHomePost } from "@/utils/interfaces";
 import { MosaicItem } from "./MosaicItem";
-import { Masonry } from "react-plock";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
+} from "@/components/ui/carousel";
 
 export const Mosaic = ({ posts }: { posts: IHomePost[] }) => {
   return (
-    <Masonry
-      items={posts}
-      config={{
-        columns: [2, 2, 3],
-        gap: [4, 8, 12],
-        media: [640, 1200, 1444],
-      }}
-      render={(item) => <MosaicItem key={item.id} item={item} />}
-    />
+    <Carousel className="w-full" opts={{ align: "start", loop: true }}>
+      <CarouselContent>
+        {posts.map((post) => (
+          <CarouselItem key={post.id} className="basis-1/2 md:basis-1/3 lg:basis-1/4">
+            <MosaicItem item={post} />
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+      <CarouselPrevious className="left-2" />
+      <CarouselNext className="right-2" />
+    </Carousel>
   );
 };

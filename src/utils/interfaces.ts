@@ -18,6 +18,7 @@ export interface IHomePost {
   id: string;
   post: { url: string; width: number; height: number };
   link: string;
+  backgroundColor?: string;
 }
 
 export interface IMainBanner {
