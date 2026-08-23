@@ -65,6 +65,15 @@ export interface IFacaParte {
   thumb: { url: string; width: number; height: number };
 }
 
+export interface IPublication {
+  title: string;
+  authors: string;
+  venue: string;
+  field: string;
+  link?: string;
+  date: string;
+}
+
 export interface IProfessor {
   name: string;
   role: string;

@@ -51,8 +51,18 @@ export const HOME_QUERY = `
     }
   }
 `;
-
-export const PROFESSORS_QUERY = `
+    
+    // publicationCollection(order: date_DESC, limit: 5) {
+    //   items {
+    //     title
+    //     authors
+    //     venue
+    //     field
+    //     link
+    //     date
+    //   }
+    // }
+    export const PROFESSORS_QUERY = `
   query {
     docentesCollection {
       items {
