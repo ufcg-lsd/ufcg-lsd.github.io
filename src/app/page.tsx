@@ -38,7 +38,7 @@ export default async function Home() {
         <BannerCarousel items={banners?.items || []} />
         <div className="flex lg:flex-row gap-4 h-full justify-between items-center">
           <div className="flex flex-col items-start">
-            <h1 className="text-xl md:text-2xl lg:text-4xl font-bold w-fit text-center">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold w-fit text-center">
               {title}
             </h1>
             <article className="text-sm lg:text-lg text-start ">

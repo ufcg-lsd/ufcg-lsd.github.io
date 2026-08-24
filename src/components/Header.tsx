@@ -21,7 +21,7 @@ export const Header = ({ items }: { items: INavItem[] }) => {
       }}
     >
       <div className="absolute inset-0 bg-black/30" />
-      <div className="relative flex items-center justify-between max-width min-h-16">
+      <div className="relative flex items-center justify-between px-4 md:px-16 w-full min-h-16 max-w-(--max-width)">
         <Link href="/">
           <Image
             src={"/short-logo.png"}

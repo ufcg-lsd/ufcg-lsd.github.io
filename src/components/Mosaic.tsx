@@ -15,7 +15,7 @@ export const Mosaic = ({ posts }: { posts: IHomePost[] }) => {
     <Carousel className="w-full" opts={{ align: "start", loop: true }}>
       <CarouselContent>
         {posts.map((post) => (
-          <CarouselItem key={post.id} className="basis-1/2 md:basis-1/3 lg:basis-1/4">
+          <CarouselItem key={post.id} className="basis-1/3 md:basis-1/4 lg:basis-1/5">
             <MosaicItem item={post} />
           </CarouselItem>
         ))}

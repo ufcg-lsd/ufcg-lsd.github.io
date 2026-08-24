@@ -12,10 +12,10 @@ export const RecentPublications = ({
 
   return (
     <div className="flex flex-col gap-2">
-      <h2 className="text-2xl font-semibold text-gray-800">
+      <h2 className="text-lg md:text-2xl font-semibold text-gray-800">
         Publicações Recentes
       </h2>
-      <p className="text-sm text-gray-600">
+      <p className="text-xs md:text-md text-gray-600">
         Confira os trabalhos científicos mais recentes produzidos pelos
         pesquisadores do laboratório.
       </p>
