@@ -13,25 +13,18 @@ export const Header = ({ items }: { items: INavItem[] }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
   return (
-    <div
-      className="relative flex justify-center w-full"
-      style={{
-        backgroundColor: items.find((item) => pathname === item.link)
-          ?.color,
-      }}
-    >
-      <div className="absolute inset-0 bg-black/30" />
+    <div className="relative flex justify-center w-full bg-white border-b border-gray-100">
       <div className="relative flex items-center justify-between px-4 md:px-16 w-full min-h-16 max-w-(--max-width)">
-        <Link href="/">
+        <Link href="/" className="md:order-2">
           <Image
             src={"/short-logo.png"}
             width={200}
             height={100}
-            className="w-10 md:w-20 h-fit"
+            className="w-10 md:w-20 h-fit brightness-0 opacity-80"
             alt="LSD logo with the characters combining as one big logo"
           />
         </Link>
-        <div className="hidden md:flex">
+        <div className="hidden md:flex md:order-1 gap-2">
           {items
             .sort((a, b) => a.order - b.order)
             .map((item) => (
@@ -45,7 +38,7 @@ export const Header = ({ items }: { items: INavItem[] }) => {
         <div className="md:hidden">
           <button
             onClick={() => setIsMenuOpen(true)}
-            className="text-white cursor-pointer transition-all duration-300 hover:opacity-75"
+            className="text-gray-800 cursor-pointer transition-all duration-300 hover:opacity-75"
           >
             <Icon id="menu" size={24} />
           </button>
