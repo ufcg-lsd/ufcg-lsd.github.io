@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { PageFrame } from "@/components/PageFrame";
 import { ProfessorsGrid } from "@/components/ProfessorsGrid";
 import { getContent } from "@/utils/contentful";
@@ -32,10 +33,16 @@ export default async function Professores() {
           <article>{documentToReactComponents(text.json)}</article>
         </div>
         <hr className="border-gray-200" />
-        <ProfessorsGrid
-          tags={workingFields.items}
-          initProfessors={docentesCollection.items}
-        />
+        <Suspense
+          fallback={
+            <p className="py-20 text-center text-gray-500">Carregando...</p>
+          }
+        >
+          <ProfessorsGrid
+            tags={workingFields.items}
+            initProfessors={docentesCollection.items}
+          />
+        </Suspense>
       </div>
     </PageFrame>
   );

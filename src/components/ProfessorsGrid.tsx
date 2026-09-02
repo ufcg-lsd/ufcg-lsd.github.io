@@ -3,7 +3,8 @@
 import { IProfessor } from "@/utils/interfaces";
 import { getContent } from "@/utils/contentful";
 import { PROFESSORS_FILTERED_QUERY } from "@/utils/queries";
-import React from "react";
+import React, { useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import Professor from "./Professor";
 import { FilterBar } from "./FilterBar";
 import { PaginationControls } from "./PaginationControls";
@@ -15,6 +16,7 @@ export const ProfessorsGrid: React.FC<{
   tags: { name: string }[];
   initProfessors: IProfessor[];
 }> = ({ tags = [], initProfessors = [] }) => {
+  const area = useSearchParams().get("area");
   const { selectedTags, currentPage, setCurrentPage, isLoading, totalPages, paginated, handleTagSelect, handleTagSelectOnly } =
     usePaginatedFilter(initProfessors, PAGE_SIZE, async (activeTags) => {
       const data = await getContent<{ docentesCollection: { items: IProfessor[] } }>(
@@ -23,6 +25,11 @@ export const ProfessorsGrid: React.FC<{
       );
       return data.docentesCollection.items;
     });
+
+  useEffect(() => {
+    if (area) handleTagSelectOnly(area);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- re-run only when the `area` query param itself changes
+  }, [area]);
 
   return (
     <div className="container">

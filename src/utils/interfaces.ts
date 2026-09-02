@@ -66,6 +66,28 @@ export interface IFacaParte {
   thumb: { url: string; width: number; height: number };
 }
 
+export interface INovidade {
+  label: string;
+  title: string;
+  date: string;
+  link?: string;
+}
+
+export interface IResearchLine {
+  name: string;
+  color: string;
+  projects: number;
+  professors: number;
+}
+
+export interface IWorkingFieldWithCounts {
+  name: string;
+  linkedFrom: {
+    projectCollection: { total: number };
+    docentesCollection: { total: number };
+  };
+}
+
 export interface IPublication {
   title: string;
   authors: string;

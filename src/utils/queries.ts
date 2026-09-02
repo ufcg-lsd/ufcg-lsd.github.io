@@ -60,6 +60,19 @@ export const HOME_QUERY = `
         date
       }
     }
+    workingFieldsCollection(limit: 20) {
+      items {
+        name
+        linkedFrom {
+          projectCollection(limit: 1) {
+            total
+          }
+          docentesCollection(limit: 1) {
+            total
+          }
+        }
+      }
+    }
   }
 `;
     

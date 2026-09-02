@@ -3,7 +3,8 @@
 import { IProject } from "@/utils/interfaces";
 import { getContent } from "@/utils/contentful";
 import { PROJECTS_FILTERED_QUERY } from "@/utils/queries";
-import React from "react";
+import React, { useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { ProjectCard } from "./ProjectCard";
 import { FilterBar } from "./FilterBar";
 import { PaginationControls } from "./PaginationControls";
@@ -15,6 +16,7 @@ export const ProjectsGrid: React.FC<{
   tags: { name: string }[];
   initProjects: IProject[];
 }> = ({ tags = [], initProjects = [] }) => {
+  const area = useSearchParams().get("area");
   const { selectedTags, currentPage, setCurrentPage, isLoading, totalPages, paginated, handleTagSelect, handleTagSelectOnly } =
     usePaginatedFilter(initProjects, PAGE_SIZE, async (activeTags) => {
       const data = await getContent<{ projectCollection: { items: IProject[] } }>(
@@ -23,6 +25,11 @@ export const ProjectsGrid: React.FC<{
       );
       return data.projectCollection.items;
     });
+
+  useEffect(() => {
+    if (area) handleTagSelectOnly(area);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- re-run only when the `area` query param itself changes
+  }, [area]);
 
   return (
     <div className="py-2">

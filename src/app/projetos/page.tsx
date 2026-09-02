@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { PageFrame } from "@/components/PageFrame";
 import { ProjectsGrid } from "@/components/ProjectsGrid";
 import { getContent } from "@/utils/contentful";
@@ -33,10 +34,16 @@ export default async function Projetos() {
           <article>{documentToReactComponents(text.json)}</article>
         </div>
         <hr className="border-gray-200" />
-        <ProjectsGrid
-          tags={workingFields.items}
-          initProjects={projectCollection.items}
-        />
+        <Suspense
+          fallback={
+            <p className="py-20 text-center text-gray-500">Carregando...</p>
+          }
+        >
+          <ProjectsGrid
+            tags={workingFields.items}
+            initProjects={projectCollection.items}
+          />
+        </Suspense>
       </div>
     </PageFrame>
   );

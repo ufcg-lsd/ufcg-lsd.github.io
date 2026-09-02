@@ -26,13 +26,13 @@ export function BannerCarousel({ items }: { items: IMainBanner[] }) {
       <CarouselContent>
         {items.map((item, index) => (
           <CarouselItem key={index}>
-            <div className="rounded-lg overflow-hidden max-h-120">
+            <div className="rounded-sm overflow-hidden max-h-120">
               <Image
                 src={item.image.url}
                 alt=""
                 width={1200}
                 height={1200}
-                className="w-full object-center"
+                className="w-full object-cover aspect-6/3"
                 priority={index === 0}
               />
             </div>
