@@ -10,77 +10,87 @@ interface ProfessorCardProps {
 }
 
 const Professor: React.FC<ProfessorCardProps> = ({ professor, onTagSelect }) => {
+  const fields = professor?.workingFieldsCollection?.items ?? [];
+  const [firstField, ...restFields] = fields;
+
   return (
-    <div className="max-w-sm overflow-hidden bg-white font-sans">
-      <div className="aspect-square w-full overflow-hidden rounded-xl">
+    <div className="flex items-start gap-3 border-b border-gray-200 py-4">
+      <div className="size-20 shrink-0 overflow-hidden rounded-md bg-gray-100">
         <Image
           src={professor.photo.url}
-          width={800}
-          height={800}
+          width={128}
+          height={128}
           alt={professor.name}
-          className="h-full w-full object-cover rounded-xl transition-transform duration-300 hover:scale-105"
+          className="h-full w-full object-cover"
         />
       </div>
 
-      <div className="py-4 flex flex-col gap-2">
+      <div className="flex flex-col gap-1">
         <div>
-          <h2 className="text-md md:text-lg font-bold text-gray-800 p-0">
-            {professor.name}
-          </h2>
-          <p className="text-sm text-gray-400">{professor.role}</p>
+          <h2 className="text-md font-bold text-gray-900">{professor.name}</h2>
+          <p className="text-sm text-gray-500">{professor.role}</p>
         </div>
 
-        <div className="flex items-center gap-2 transition duration-300 text-gray-500">
-          {professor.email && (
-            <a
-              href={`mailto:${professor.email}`}
-              className="hover:text-blue-600"
-            >
-              <Mail size={24} strokeWidth={1.5} />
-            </a>
-          )}
-          {professor.github && (
-            <a
-              href={professor.github}
-              target="_blank"
-              rel="noreferrer"
-              className="hover:text-blue-600"
-            >
-              <Icon id="github" size={20} />
-            </a>
-          )}
-          {professor.lattes && (
-            <a
-              href={professor.lattes}
-              target="_blank"
-              rel="noreferrer"
-              className="hover:text-blue-600"
-            >
-              <Icon id="lattes" size={20} />
-            </a>
-          )}
-          {professor.linkedin && (
-            <a
-              href={professor.linkedin}
-              target="_blank"
-              rel="noreferrer"
-              className="hover:text-blue-600"
-            >
-              <Icon id="linkedin" size={20} />
-            </a>
-          )}
-        </div>
+        <div className="flex flex-wrap items-center gap-2">
+          <div className="flex items-center gap-2 text-gray-500">
+            {professor.email && (
+              <a
+                href={`mailto:${professor.email}`}
+                className="hover:text-blue-600"
+              >
+                <Mail size={18} strokeWidth={1.5} />
+              </a>
+            )}
+            {professor.github && (
+              <a
+                href={professor.github}
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-blue-600"
+              >
+                <Icon id="github" size={18} />
+              </a>
+            )}
+            {professor.lattes && (
+              <a
+                href={professor.lattes}
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-blue-600"
+              >
+                <Icon id="lattes" size={18} />
+              </a>
+            )}
+            {professor.linkedin && (
+              <a
+                href={professor.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-blue-600"
+              >
+                <Icon id="linkedin" size={18} />
+              </a>
+            )}
+          </div>
 
-        <div className="flex gap-2 overflow-x-auto whitespace-nowrap scrollbar-hide">
-          {professor?.workingFieldsCollection?.items.map((field) => (
-            <button
-              key={field.name}
-              onClick={() => onTagSelect?.(field.name)}
-              className="inline-block rounded-md bg-gray-200 px-3 py-1 text-sm text-gray-700 hover:bg-gray-300 transition-colors cursor-pointer"
-            >
-              #{field.name}
-            </button>
-          ))}
+          {firstField && (
+            <>
+              <span className="h-4 w-px bg-gray-300" aria-hidden="true" />
+              <div className="flex flex-wrap items-center gap-2">
+                <button
+                  onClick={() => onTagSelect?.(firstField.name)}
+                  className="rounded-xs border border-gray-200 bg-white px-2 py-1 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors cursor-pointer"
+                >
+                  #{firstField.name}
+                </button>
+                {restFields.length > 0 && (
+                  <span className="rounded-xs border border-gray-200 bg-white px-2 py-1 text-sm font-medium text-gray-500">
+                    +{restFields.length}
+                  </span>
+                )}
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>

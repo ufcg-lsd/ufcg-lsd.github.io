@@ -39,7 +39,7 @@ export const ProfessorsGrid: React.FC<{
         onTagSelect={handleTagSelect}
         onClear={handleClearTags}
         count={items.length}
-        itemLabel="professores"
+        itemLabel="professor(a)(es/as)"
       />
       <div className="my-6 h-px w-full bg-gray-200" aria-hidden="true" />
       {isLoading ? (
@@ -49,7 +49,7 @@ export const ProfessorsGrid: React.FC<{
           Nenhum professor foi encontrado para os filtros selecionados.
         </p>
       ) : (
-        <div className="grid gap-8 grid-cols-2 lg:grid-cols-4 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-8">
           {paginated.map((prof) => (
             <Professor key={prof.name} professor={prof} onTagSelect={handleTagSelectOnly} />
           ))}

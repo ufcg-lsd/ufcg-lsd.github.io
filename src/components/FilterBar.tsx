@@ -6,6 +6,7 @@ interface FilterBarProps {
   onTagSelect: (tag: string) => void;
   onClear: () => void;
   count: number;
+  itemLabel: string;
 }
 
 export const FilterBar: React.FC<FilterBarProps> = ({
@@ -14,6 +15,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
   onTagSelect,
   onClear,
   count,
+  itemLabel,
 }) => {
   const isAllSelected = selectedTags.length === 0;
 
@@ -30,7 +32,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
       <div className="mb-4 flex items-baseline justify-between">
         <h3 className="text-lg font-bold text-gray-900">Áreas de atuação</h3>
         <span className="text-sm text-gray-500">
-          {count} projeto(s)
+          {count} {itemLabel}
         </span>
       </div>
       <div className="flex flex-wrap gap-3">

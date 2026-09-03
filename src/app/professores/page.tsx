@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import { PageFrame } from "@/components/PageFrame";
 import { ProfessorsGrid } from "@/components/ProfessorsGrid";
 import { getContent } from "@/utils/contentful";
-import { INavItem, IPageHeader, IProfessor } from "@/utils/interfaces";
+import { IPageHeader, IProfessor } from "@/utils/interfaces";
 import { PROFESSORS_QUERY } from "@/utils/queries";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 
@@ -11,12 +11,10 @@ export const revalidate = 60;
 export default async function Professores() {
   const {
     pageHeaderCollection: headers,
-    navItemsCollection: navItems,
     docentesCollection,
     workingFieldsCollection: workingFields,
   }: {
     docentesCollection: { items: IProfessor[] };
-    navItemsCollection: { items: INavItem[] };
     pageHeaderCollection: { items: IPageHeader[] };
     workingFieldsCollection: { items: { name: string }[] };
   } = await getContent(PROFESSORS_QUERY);
@@ -25,12 +23,13 @@ export default async function Professores() {
   return (
     <PageFrame>
       <div className="flex flex-col gap-3 py-4 px-4">
-        <div
-          className="flex flex-col gap-2"
-          style={{ color: navItems.items[0].color }}
-        >
-          <h1 className="text-3xl font-bold">{title}</h1>
-          <article>{documentToReactComponents(text.json)}</article>
+        <div className="flex flex-col gap-2">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900">
+            {title}
+          </h1>
+          <article className="text-sm md:text-base lg:text-lg text-gray-600 mt-1">
+            {documentToReactComponents(text.json)}
+          </article>
         </div>
         <hr className="border-gray-200" />
         <Suspense

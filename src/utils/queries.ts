@@ -107,12 +107,6 @@ export const HOME_QUERY = `
       }
     }
 
-    navItemsCollection(where: { id: "professores" }) {
-      items {
-        color
-      }
-    }
-
     workingFieldsCollection {
       items {
         name

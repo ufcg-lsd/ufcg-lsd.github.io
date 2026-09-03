@@ -39,6 +39,7 @@ export const ProjectsGrid: React.FC<{
         onTagSelect={handleTagSelect}
         onClear={handleClearTags}
         count={items.length}
+        itemLabel="projeto(s)"
       />
       <div className="my-6 h-px w-full bg-gray-200" aria-hidden="true" />
       {isLoading ? (
