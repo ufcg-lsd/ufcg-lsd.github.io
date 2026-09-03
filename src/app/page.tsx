@@ -1,7 +1,6 @@
 import { Hero } from "@/components/Hero";
 import { Mosaic } from "@/components/Mosaic";
 import { PageFrame } from "@/components/PageFrame";
-import { RecentPublications } from "@/components/RecentPublications";
 import { getContent } from "@/utils/contentful";
 import {
   IHomePost,
@@ -44,18 +43,20 @@ export default async function Home() {
     homePostCollection: posts,
     mainBannerCollection: banners,
     pageHeaderCollection: headers,
-    publicationsCollection: publications,
     workingFieldsCollection: workingFields,
   }: {
     homePostCollection: { items: IHomePost[] };
     mainBannerCollection: { items: IMainBanner[] };
     pageHeaderCollection: { items: IPageHeader[] };
-    publicationsCollection: { items: IPublication[] };
     workingFieldsCollection: { items: IWorkingFieldWithCounts[] };
   } = await getContent(HOME_QUERY);
 
   const { title, text } = headers.items.filter(
     (header) => header.id == "home",
+  )[0];
+
+  const presencaOnlineHeader = headers.items.filter(
+    (header) => header.id == "presenca-online",
   )[0];
 
   const researchLines: IResearchLine[] = (workingFields?.items || []).map(
@@ -69,7 +70,7 @@ export default async function Home() {
 
   return (
     <PageFrame>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-12">
         <Hero
           title={title}
           text={text}
@@ -77,8 +78,11 @@ export default async function Home() {
           news={news}
           researchLines={researchLines}
         />
-        <Mosaic posts={posts.items || []} />
-        <RecentPublications publications={publications?.items || []} />
+        <Mosaic
+          posts={posts.items || []}
+          title={presencaOnlineHeader.title}
+          text={presencaOnlineHeader.text}
+        />
       </div>
     </PageFrame>
   );

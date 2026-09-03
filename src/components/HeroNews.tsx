@@ -59,7 +59,7 @@ export const HeroNews = ({ items }: { items: INovidade[] }) => {
     <Carousel
       setApi={setApi}
       opts={{ align: "start", loop: true }}
-      className="rounded-sm border border-gray-200 shadow-sm p-4 flex flex-col gap-3"
+      className="rounded-xs border border-gray-200 shadow-sm p-4 flex flex-col gap-3"
     >
       <div className="flex items-center justify-between">
         <span className="text-xs font-semibold text-gray-500 uppercase">novidades</span>
@@ -72,7 +72,7 @@ export const HeroNews = ({ items }: { items: INovidade[] }) => {
               type="button"
               onClick={() => api?.scrollPrev()}
               aria-label="Novidade anterior"
-              className="rounded-sm border border-gray-200 p-1 hover:bg-gray-100"
+              className="rounded-xs border border-gray-200 p-1 hover:bg-gray-100"
             >
               <ChevronLeft size={14} />
             </button>
@@ -80,7 +80,7 @@ export const HeroNews = ({ items }: { items: INovidade[] }) => {
               type="button"
               onClick={() => api?.scrollNext()}
               aria-label="Próxima novidade"
-              className="rounded-sm border border-gray-200 p-1 hover:bg-gray-100"
+              className="rounded-xs border border-gray-200 p-1 hover:bg-gray-100"
             >
               <ChevronRight size={14} />
             </button>

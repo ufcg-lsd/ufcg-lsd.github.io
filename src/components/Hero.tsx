@@ -34,7 +34,7 @@ export const Hero = ({
       </div>
 
       <div className="flex flex-col gap-4 lg:w-[38%]">
-        <div className="self-start flex items-center gap-2 rounded-sm w-full bg-[#E2F0EE] text-cyan-800 px-4 py-2 text-sm font-semibold">
+        <div className="self-start flex items-center gap-2 rounded-xs w-full bg-[#E2F0EE] text-cyan-800 px-4 py-2 text-sm font-semibold">
           <MapPin size={16} />
           UFCG · CAMPINA GRANDE
         </div>

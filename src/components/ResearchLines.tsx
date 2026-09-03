@@ -38,14 +38,14 @@ export const ResearchLines = ({ lines }: { lines: IResearchLine[] }) => {
                 href={`/projetos?area=${encodeURIComponent(line.name)}`}
                 className="hover:text-gray-900 hover:underline"
               >
-                {line.projects} projetos
+                {line.projects} projeto(s)
               </Link>
               {" · "}
               <Link
                 href={`/professores?area=${encodeURIComponent(line.name)}`}
                 className="hover:text-gray-900 hover:underline"
               >
-                {line.professors} professores
+                {line.professors} professor(a)(e/as)
               </Link>
             </span>
           </div>

@@ -41,7 +41,7 @@ export const HOME_QUERY = `
         }
       }
     }
-    pageHeaderCollection {
+    pageHeaderCollection(where: { id_in: ["home", "presenca-online"] }) {
       items {
         id
         title

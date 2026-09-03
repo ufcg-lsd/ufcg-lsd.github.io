@@ -26,7 +26,7 @@ export function BannerCarousel({ items }: { items: IMainBanner[] }) {
       <CarouselContent>
         {items.map((item, index) => (
           <CarouselItem key={index}>
-            <div className="rounded-sm overflow-hidden max-h-120">
+            <div className="rounded-xs overflow-hidden max-h-120">
               <Image
                 src={item.image.url}
                 alt=""
