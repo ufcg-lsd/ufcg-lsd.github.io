@@ -17,7 +17,7 @@ export const ProjectsGrid: React.FC<{
   initProjects: IProject[];
 }> = ({ tags = [], initProjects = [] }) => {
   const area = useSearchParams().get("area");
-  const { selectedTags, currentPage, setCurrentPage, isLoading, totalPages, paginated, handleTagSelect, handleTagSelectOnly } =
+  const { selectedTags, items, currentPage, setCurrentPage, isLoading, totalPages, paginated, handleTagSelect, handleTagSelectOnly, handleClearTags } =
     usePaginatedFilter(initProjects, PAGE_SIZE, async (activeTags) => {
       const data = await getContent<{ projectCollection: { items: IProject[] } }>(
         PROJECTS_FILTERED_QUERY,
@@ -33,7 +33,13 @@ export const ProjectsGrid: React.FC<{
 
   return (
     <div className="py-2">
-      <FilterBar tags={tags} selectedTags={selectedTags} onTagSelect={handleTagSelect} />
+      <FilterBar
+        tags={tags}
+        selectedTags={selectedTags}
+        onTagSelect={handleTagSelect}
+        onClear={handleClearTags}
+        count={items.length}
+      />
       <div className="my-6 h-px w-full bg-gray-200" aria-hidden="true" />
       {isLoading ? (
         <p className="py-20 text-center text-gray-500">Carregando...</p>

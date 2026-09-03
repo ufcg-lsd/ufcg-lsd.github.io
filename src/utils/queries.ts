@@ -152,11 +152,6 @@ export const PROJECTS_QUERY = `
         }
       }
     }
-    navItemsCollection(where: { id: "projetos" }) {
-      items {
-        color
-      }
-    }
     workingFieldsCollection {
       items {
         name

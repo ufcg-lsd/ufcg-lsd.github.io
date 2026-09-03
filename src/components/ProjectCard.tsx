@@ -14,7 +14,7 @@ export const ProjectCard = ({
   const endLabel = project.endDate ? getYear(project.endDate) : "Atual";
 
   return (
-    <div className="py-6 border-b border-gray-200 hover:bg-gray-100 rounded-lg p-4 transition duration-300 slast:border-b-0">
+    <div className="py-6 border-b border-gray-200 hover:bg-gray-100 rounded-xs p-4 transition duration-300 slast:border-b-0">
       <div className="flex w-full flex-wrap items-start justify-between gap-x-2 gap-y-1">
         {project.link ? (
           <a
@@ -49,7 +49,7 @@ export const ProjectCard = ({
             <button
               key={field.name}
               onClick={() => onTagSelect?.(field.name)}
-              className="inline-block rounded-md bg-gray-200 px-3 py-1 text-sm text-gray-700 hover:bg-gray-300 transition-colors cursor-pointer"
+              className="inline-block rounded-xs border border-gray-200 bg-white px-2 py-1 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors cursor-pointer"
             >
               #{field.name}
             </button>

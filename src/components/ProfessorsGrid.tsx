@@ -17,7 +17,7 @@ export const ProfessorsGrid: React.FC<{
   initProfessors: IProfessor[];
 }> = ({ tags = [], initProfessors = [] }) => {
   const area = useSearchParams().get("area");
-  const { selectedTags, currentPage, setCurrentPage, isLoading, totalPages, paginated, handleTagSelect, handleTagSelectOnly } =
+  const { selectedTags, items, currentPage, setCurrentPage, isLoading, totalPages, paginated, handleTagSelect, handleTagSelectOnly, handleClearTags } =
     usePaginatedFilter(initProfessors, PAGE_SIZE, async (activeTags) => {
       const data = await getContent<{ docentesCollection: { items: IProfessor[] } }>(
         PROFESSORS_FILTERED_QUERY,
@@ -33,7 +33,14 @@ export const ProfessorsGrid: React.FC<{
 
   return (
     <div className="container">
-      <FilterBar tags={tags} selectedTags={selectedTags} onTagSelect={handleTagSelect} />
+      <FilterBar
+        tags={tags}
+        selectedTags={selectedTags}
+        onTagSelect={handleTagSelect}
+        onClear={handleClearTags}
+        count={items.length}
+        itemLabel="professores"
+      />
       <div className="my-6 h-px w-full bg-gray-200" aria-hidden="true" />
       {isLoading ? (
         <p className="py-20 text-center text-gray-500">Carregando...</p>
