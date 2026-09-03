@@ -156,8 +156,9 @@ export const PROJECTS_QUERY = `
 
 export const QUEM_SOMOS_QUERY = `
   query {
-    pageHeaderCollection(where: { id: "quem-somos" }) {
+    pageHeaderCollection(where: { id_in: ["quem-somos", "publicacoes-destaque"] }) {
       items {
+        id
         title
         text {
           json
@@ -175,9 +176,14 @@ export const QUEM_SOMOS_QUERY = `
         values
       }
     }
-    pageNavItem: navItemsCollection(where: { id: "quem-somos" }) {
+    publicationsCollection(order: date_DESC, limit: 5) {
       items {
-        color
+        title
+        authors
+        venue
+        field
+        link
+        date
       }
     }
     photosGalleryCollection {
@@ -207,11 +213,6 @@ export const FACA_PARTE_QUERY = `
         text {
           json
         }
-      }
-    }
-    navItemsCollection(where: { id: "faca-parte" }) {
-      items {
-        color
       }
     }
     facaParteCollection {

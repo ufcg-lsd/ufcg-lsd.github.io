@@ -17,7 +17,7 @@ export const PhotoCard: React.FC<PhotoCardProps> = ({
   return (
     <div
       onClick={onClick}
-      className={`group relative overflow-hidden rounded-lg cursor-pointer ${bentoClass}`}
+      className={`group relative overflow-hidden rounded-xs cursor-pointer ${bentoClass}`}
     >
       <Image
         src={photo.image.url}
