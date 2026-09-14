@@ -38,8 +38,10 @@ export function usePaginatedFilter<T>(
 
   const handleTagSelectOnly = (tagName: string) => applyTags([tagName]);
 
+  const handleClearTags = () => applyTags([]);
+
   const totalPages = Math.ceil(items.length / pageSize);
   const paginated = items.slice(currentPage * pageSize, (currentPage + 1) * pageSize);
 
-  return { selectedTags, items, currentPage, setCurrentPage, isLoading, totalPages, paginated, handleTagSelect, handleTagSelectOnly };
+  return { selectedTags, items, currentPage, setCurrentPage, isLoading, totalPages, paginated, handleTagSelect, handleTagSelectOnly, handleClearTags };
 }

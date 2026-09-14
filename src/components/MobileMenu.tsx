@@ -24,7 +24,7 @@ export const MobileMenu = ({
       onClick={onClose}
     >
       <div
-        className={`absolute top-0 left-0 w-full bg-white shadow-lg rounded-b-2xl z-50 transform transition-transform duration-300 ease-in-out ${
+        className={`absolute top-0 left-0 mx-4 w-[calc(100%-2rem)] bg-white shadow-lg rounded-b-2xl z-50 transform transition-transform duration-300 ease-in-out ${
           isOpen ? "translate-y-0" : "-translate-y-full"
         }`}
         onClick={(e) => e.stopPropagation()}

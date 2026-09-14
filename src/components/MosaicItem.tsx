@@ -6,7 +6,7 @@ import Link from "next/link";
 export const MosaicItem = ({ item }: { item: IHomePost }) => {
   return (
     <div
-      className="group relative aspect-5/3 flex items-center justify-between rounded-lg overflow-hidden hover:opacity-75 transition-all duration-300"
+      className="group relative aspect-5/3 flex items-center justify-between rounded-xs overflow-hidden hover:opacity-75 transition-all duration-300"
       style={{
         backgroundColor: item.backgroundColor || getStableBrandColor(item.id),
       }}

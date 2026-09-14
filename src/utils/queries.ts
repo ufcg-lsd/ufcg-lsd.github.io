@@ -41,7 +41,7 @@ export const HOME_QUERY = `
         }
       }
     }
-    pageHeaderCollection {
+    pageHeaderCollection(where: { id_in: ["home", "presenca-online"] }) {
       items {
         id
         title
@@ -58,6 +58,19 @@ export const HOME_QUERY = `
         field
         link
         date
+      }
+    }
+    workingFieldsCollection(limit: 20) {
+      items {
+        name
+        linkedFrom {
+          projectCollection(limit: 1) {
+            total
+          }
+          docentesCollection(limit: 1) {
+            total
+          }
+        }
       }
     }
   }
@@ -91,12 +104,6 @@ export const HOME_QUERY = `
         text {
           json
         }
-      }
-    }
-
-    navItemsCollection(where: { id: "professores" }) {
-      items {
-        color
       }
     }
 
@@ -139,11 +146,6 @@ export const PROJECTS_QUERY = `
         }
       }
     }
-    navItemsCollection(where: { id: "projetos" }) {
-      items {
-        color
-      }
-    }
     workingFieldsCollection {
       items {
         name
@@ -154,8 +156,9 @@ export const PROJECTS_QUERY = `
 
 export const QUEM_SOMOS_QUERY = `
   query {
-    pageHeaderCollection(where: { id: "quem-somos" }) {
+    pageHeaderCollection(where: { id_in: ["quem-somos", "publicacoes-destaque"] }) {
       items {
+        id
         title
         text {
           json
@@ -173,9 +176,14 @@ export const QUEM_SOMOS_QUERY = `
         values
       }
     }
-    pageNavItem: navItemsCollection(where: { id: "quem-somos" }) {
+    publicationsCollection(order: date_DESC, limit: 5) {
       items {
-        color
+        title
+        authors
+        venue
+        field
+        link
+        date
       }
     }
     photosGalleryCollection {
@@ -205,11 +213,6 @@ export const FACA_PARTE_QUERY = `
         text {
           json
         }
-      }
-    }
-    navItemsCollection(where: { id: "faca-parte" }) {
-      items {
-        color
       }
     }
     facaParteCollection {
