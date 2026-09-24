@@ -42,7 +42,7 @@ export const ResearchLines = ({ lines }: { lines: IResearchLine[] }) => {
               </Link>
               {" · "}
               <Link
-                href={`/professores?area=${encodeURIComponent(line.name)}`}
+                href={`/equipe?area=${encodeURIComponent(line.name)}`}
                 className="hover:text-gray-900 hover:underline"
               >
                 {line.professors} professor(a)(e/as)

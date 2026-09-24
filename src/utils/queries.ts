@@ -41,7 +41,7 @@ export const HOME_QUERY = `
         }
       }
     }
-    pageHeaderCollection(where: { id_in: ["home", "presenca-online"] }) {
+    pageHeaderCollection(where: { id_in: ["home", "presenca-online", "faca-parte", "parceiros"] }) {
       items {
         id
         title
@@ -73,9 +73,63 @@ export const HOME_QUERY = `
         }
       }
     }
+    facaParteCollection {
+      items {
+        text {
+          json
+        }
+        thumb {
+          url
+          width
+          height
+        }
+      }
+    }
+    contactCollection(where: { id: "email" }) {
+      items {
+        text
+        id
+        link
+      }
+    }
+    parceiroCollection {
+      items {
+        name
+        link
+        logo {
+          url
+          width
+          height
+        }
+      }
+    }
   }
 `;
-    
+
+export const PORTFOLIO_QUERY = `
+  query {
+    pageHeaderCollection(where: { id: "publicacoes-destaque" }) {
+      items {
+        id
+        title
+        text {
+          json
+        }
+      }
+    }
+    publicationsCollection(order: date_DESC, limit: 5) {
+      items {
+        title
+        authors
+        venue
+        field
+        link
+        date
+      }
+    }
+  }
+`;
+
     export const PROFESSORS_QUERY = `
   query {
     docentesCollection {
@@ -156,34 +210,13 @@ export const PROJECTS_QUERY = `
 
 export const QUEM_SOMOS_QUERY = `
   query {
-    pageHeaderCollection(where: { id_in: ["quem-somos", "publicacoes-destaque"] }) {
+    pageHeaderCollection(where: { id: "quem-somos" }) {
       items {
         id
         title
         text {
           json
         }
-      }
-    }
-    valuesCollection {
-      items {
-        mission {
-          json
-        }
-        vision {
-          json
-        }
-        values
-      }
-    }
-    publicationsCollection(order: date_DESC, limit: 5) {
-      items {
-        title
-        authors
-        venue
-        field
-        link
-        date
       }
     }
     photosGalleryCollection {
@@ -197,17 +230,12 @@ export const QUEM_SOMOS_QUERY = `
         }
       }
     }
-    navItemsCollection {
-      items {
-        color
-      }
-    }
   }
 `;
 
 export const FACA_PARTE_QUERY = `
   query {
-    pageHeaderCollection(where: { id: "faca-parte" }) {
+    pageHeaderCollection(where: { id: "institucional" }) {
       items {
         title
         text {
@@ -225,6 +253,29 @@ export const FACA_PARTE_QUERY = `
           width
           height
         }
+      }
+    }
+    contactCollection(where: { id: "email" }) {
+      items {
+        text
+        id
+        link
+      }
+    }
+    valuesCollection {
+      items {
+        mission {
+          json
+        }
+        vision {
+          json
+        }
+        values
+      }
+    }
+    navItemsCollection {
+      items {
+        color
       }
     }
   }

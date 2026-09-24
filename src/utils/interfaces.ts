@@ -25,6 +25,12 @@ export interface IMainBanner {
   image: { url: string };
 }
 
+export interface IPartner {
+  name: string;
+  link: string;
+  logo: { url: string; width: number; height: number };
+}
+
 export interface IPageHeader {
   id: string;
   title: string;

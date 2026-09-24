@@ -34,10 +34,15 @@ export const Hero = ({
       </div>
 
       <div className="flex flex-col gap-4 lg:w-[38%]">
-        <div className="self-start flex items-center gap-2 rounded-xs w-full bg-[#E2F0EE] text-cyan-800 px-4 py-2 text-sm font-semibold">
+        <a
+          href="https://maps.app.goo.gl/avCR3NdxrVDGdVmx7"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="self-start flex items-center gap-2 rounded-xs w-full bg-[#E2F0EE] text-cyan-800 px-4 py-2 text-sm font-semibold transition-all duration-200 hover:opacity-50 hover:shadow-sm"
+        >
           <MapPin size={16} />
           UFCG · CAMPINA GRANDE
-        </div>
+        </a>
 
         {news.length > 0 && <HeroNews items={news} />}
 
