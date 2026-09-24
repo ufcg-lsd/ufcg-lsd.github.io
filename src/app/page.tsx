@@ -12,34 +12,12 @@ import {
   INovidade,
   IPageHeader,
   IPartner,
-  IPublication,
   IResearchLine,
   IWorkingFieldWithCounts,
 } from "@/utils/interfaces";
 import { HOME_QUERY } from "@/utils/queries";
 
 export const revalidate = 60;
-
-const news: INovidade[] = [
-  {
-    label: "ÚLTIMO POST NO PENSADOURO LSD",
-    title: "Título do post mais recente",
-    date: "2026-08-20",
-    link: "#",
-  },
-  {
-    label: "NOVO PROJETO APROVADO",
-    title: "LSD conquista financiamento para pesquisa em IA distribuída",
-    date: "2026-08-10",
-    link: "#",
-  },
-  {
-    label: "EVENTO",
-    title: "LSD sedia workshop de Computação em Nuvem",
-    date: "2026-07-28",
-    link: "#",
-  },
-];
 
 const RESEARCH_LINE_COLORS = ["purple", "blue", "magenta", "amber", "rose"];
 
@@ -52,6 +30,7 @@ export default async function Home() {
     facaParteCollection,
     contactCollection,
     parceiroCollection,
+    newsCollection,
   }: {
     homePostCollection: { items: IHomePost[] };
     mainBannerCollection: { items: IMainBanner[] };
@@ -60,6 +39,7 @@ export default async function Home() {
     facaParteCollection: { items: IFacaParte[] };
     contactCollection: { items: IContact[] };
     parceiroCollection: { items: IPartner[] };
+    newsCollection: { items: INovidade[] };
   } = await getContent(HOME_QUERY);
 
   const { title, text } = headers.items.filter(
@@ -97,7 +77,7 @@ export default async function Home() {
           title={title}
           text={text}
           banners={banners?.items || []}
-          news={news}
+          news={newsCollection.items || []}
           researchLines={researchLines}
         />
         <Mosaic

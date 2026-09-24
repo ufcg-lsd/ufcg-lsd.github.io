@@ -92,6 +92,14 @@ export const HOME_QUERY = `
         link
       }
     }
+    newsCollection(order: date_DESC, limit: 5) {
+      items {
+        label
+        title
+        date
+        link
+      }
+    }
     parceiroCollection {
       items {
         name
