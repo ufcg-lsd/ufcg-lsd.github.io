@@ -31,8 +31,8 @@ const Professor: React.FC<ProfessorCardProps> = ({ professor, onTagSelect }) => 
           <p className="text-sm text-gray-500">{professor.role}</p>
         </div>
 
-        <div className="flex flex-wrap items-center gap-2">
-          <div className="flex items-center gap-2 text-gray-500">
+        <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center">
+          <div className="order-2 flex items-center gap-2 text-gray-500 sm:order-none">
             {professor.email && (
               <a
                 href={`mailto:${professor.email}`}
@@ -75,8 +75,8 @@ const Professor: React.FC<ProfessorCardProps> = ({ professor, onTagSelect }) => 
 
           {firstField && (
             <>
-              <span className="h-4 w-px bg-gray-300" aria-hidden="true" />
-              <div className="flex flex-wrap items-center gap-2">
+              <span className="hidden h-4 w-px bg-gray-300 sm:block" aria-hidden="true" />
+              <div className="order-1 flex flex-wrap items-center gap-2 sm:order-none">
                 <button
                   onClick={() => onTagSelect?.(firstField.name)}
                   className="rounded-xs border border-gray-200 bg-white px-2 py-1 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors cursor-pointer"

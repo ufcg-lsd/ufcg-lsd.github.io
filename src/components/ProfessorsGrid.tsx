@@ -39,7 +39,7 @@ export const ProfessorsGrid: React.FC<{
         onTagSelect={handleTagSelect}
         onClear={handleClearTags}
         count={items.length}
-        itemLabel="professor(a)(es/as)"
+        itemLabel="pessoas"
       />
       <div className="my-6 h-px w-full bg-gray-200" aria-hidden="true" />
       {isLoading ? (

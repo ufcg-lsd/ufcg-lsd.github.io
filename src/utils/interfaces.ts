@@ -115,3 +115,9 @@ export interface IProfessor {
   lattes?: string;
   workingFieldsCollection: { items: IWorkingField[] };
 }
+
+export interface IStaffStat {
+  valor: string;
+  text: string;
+  color: string;
+}

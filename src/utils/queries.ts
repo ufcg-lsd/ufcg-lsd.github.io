@@ -160,6 +160,13 @@ export const PORTFOLIO_QUERY = `
         }
       }    
     }
+    staffStatsCollection {
+      items {
+        valor
+        text
+        color
+      }
+    }
     pageHeaderCollection(where: { id: "professores" }) {
       items {
         title

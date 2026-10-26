@@ -1,8 +1,9 @@
 import { Suspense } from "react";
 import { PageFrame } from "@/components/PageFrame";
 import { ProfessorsGrid } from "@/components/ProfessorsGrid";
+import { StatCard } from "@/components/StatCard";
 import { getContent } from "@/utils/contentful";
-import { IPageHeader, IProfessor } from "@/utils/interfaces";
+import { IPageHeader, IProfessor, IStaffStat } from "@/utils/interfaces";
 import { PROFESSORS_QUERY } from "@/utils/queries";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 
@@ -13,10 +14,12 @@ export default async function Professores() {
     pageHeaderCollection: headers,
     docentesCollection,
     workingFieldsCollection: workingFields,
+    staffStatsCollection: staffStats,
   }: {
     docentesCollection: { items: IProfessor[] };
     pageHeaderCollection: { items: IPageHeader[] };
     workingFieldsCollection: { items: { name: string }[] };
+    staffStatsCollection: { items: IStaffStat[] };
   } = await getContent(PROFESSORS_QUERY);
 
   const { title, text } = headers.items[0];
@@ -30,6 +33,16 @@ export default async function Professores() {
           <article className="text-sm md:text-base lg:text-lg text-gray-600 mt-1">
             {documentToReactComponents(text.json)}
           </article>
+        </div>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 my-4">
+          {staffStats.items.map((stat) => (
+            <StatCard
+              key={stat.text}
+              value={stat.valor}
+              label={stat.text}
+              color={stat.color}
+            />
+          ))}
         </div>
         <hr className="border-gray-200" />
         <Suspense

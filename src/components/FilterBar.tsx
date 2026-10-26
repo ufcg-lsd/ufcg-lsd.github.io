@@ -21,7 +21,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
 
   const pillClass = (selected: boolean) =>
     cn(
-      "rounded-xs border px-2 py-1 text-sm font-medium transition-colors cursor-pointer bg-white",
+      "shrink-0 rounded-xs border px-2 py-1 text-sm font-medium transition-colors cursor-pointer bg-white",
       selected
         ? "border-cyan-700 text-cyan-700"
         : "border-gray-200 text-gray-700 hover:bg-gray-50",
@@ -35,7 +35,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
           {count} {itemLabel}
         </span>
       </div>
-      <div className="flex flex-wrap gap-3">
+      <div className="-mx-4 flex gap-3 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0">
         <button onClick={onClear} className={pillClass(isAllSelected)}>
           Todos
         </button>
