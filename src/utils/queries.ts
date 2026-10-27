@@ -41,7 +41,7 @@ export const HOME_QUERY = `
         }
       }
     }
-    pageHeaderCollection(where: { id_in: ["home", "presenca-online", "faca-parte", "parceiros"] }) {
+    pageHeaderCollection(where: { id_in: ["home", "presenca-online", "faca-parte"] }) {
       items {
         id
         title
@@ -100,23 +100,12 @@ export const HOME_QUERY = `
         link
       }
     }
-    parceiroCollection {
-      items {
-        name
-        link
-        logo {
-          url
-          width
-          height
-        }
-      }
-    }
   }
 `;
 
 export const PORTFOLIO_QUERY = `
   query {
-    pageHeaderCollection(where: { id: "publicacoes-destaque" }) {
+    pageHeaderCollection(where: { id_in: ["portfolio", "publicacoes-destaque"] }) {
       items {
         id
         title
@@ -207,8 +196,9 @@ export const PROJECTS_QUERY = `
         endDate
       }
     }
-    pageHeaderCollection(where: { id: "projetos" }) {
+    pageHeaderCollection(where: { id_in: ["projetos", "parceiros"] }) {
       items {
+        id
         title
         text {
           json
@@ -218,6 +208,17 @@ export const PROJECTS_QUERY = `
     workingFieldsCollection {
       items {
         name
+      }
+    }
+    parceiroCollection {
+      items {
+        name
+        link
+        logo {
+          url
+          width
+          height
+        }
       }
     }
   }

@@ -23,7 +23,7 @@ export const Hero = ({
     <div className="flex flex-col lg:flex-row gap-6">
       <div className="flex flex-col gap-4 lg:w-[62%]">
         <div>
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900">
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-900">
             {title}
           </h1>
           <article className="text-sm md:text-base lg:text-lg text-gray-600 mt-1">

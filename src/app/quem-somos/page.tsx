@@ -24,11 +24,11 @@ export default async function QuemSomos() {
     <PageFrame>
       <div className="flex flex-col gap-6 py-4 px-4">
         <div className="flex flex-col gap-2">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900">
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-900">
             {pageHeader?.title}
           </h1>
           {pageHeader?.text && (
-            <article className="text-sm md:text-base lg:text-lg text-gray-600 mt-1">
+            <article className="text-sm md:text-base text-gray-600 mt-1">
               {documentToReactComponents(pageHeader.text.json)}
             </article>
           )}

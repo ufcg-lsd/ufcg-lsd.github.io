@@ -25,12 +25,12 @@ export const PartnersCarousel = ({
 
   return (
     <Carousel
-      className="flex flex-col gap-6"
+      className="flex flex-col gap-6 pt-2"
       opts={{ align: "start", loop: true }}
     >
       <div className="flex items-start justify-between gap-4">
         <div>
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
+          <h2 className="text-2xl font-bold text-gray-900">
             {title}
           </h2>
           <div className="text-sm text-gray-600 mt-1">
@@ -42,8 +42,6 @@ export const PartnersCarousel = ({
           <CarouselNext className="static size-10 translate-x-0 translate-y-0 rounded-xs bg-cyan-800 text-white hover:border-cyan-800 border-0 hover:border hover:text-cyan-800 hover:bg-white cursor-pointer" />
         </div>
       </div>
-
-      <hr className="border-gray-200" />
 
       <CarouselContent>
         {partners.map((partner) => (

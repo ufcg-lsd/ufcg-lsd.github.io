@@ -27,7 +27,7 @@ export default async function Professores() {
     <PageFrame>
       <div className="flex flex-col gap-3 py-4 px-4">
         <div className="flex flex-col gap-2">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900">
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-900">
             {title}
           </h1>
           <article className="text-sm md:text-base lg:text-lg text-gray-600 mt-1">

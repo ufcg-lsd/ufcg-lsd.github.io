@@ -14,7 +14,7 @@ export const ProjectCard = ({
   const endLabel = project.endDate ? getYear(project.endDate) : "Atual";
 
   return (
-    <div className="py-6 border-b border-gray-200 hover:bg-gray-100 rounded-xs p-4 transition duration-300 slast:border-b-0">
+    <div className="py-6 border-b border-gray-200 hover:bg-gray-100 rounded-xs p-4 transition duration-300 last:border-b-0">
       <div className="flex w-full flex-wrap items-start justify-between gap-x-2 gap-y-1">
         {project.link ? (
           <a

@@ -30,7 +30,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
   return (
     <div className="mb-8">
       <div className="mb-4 flex items-baseline justify-between">
-        <h3 className="text-lg font-bold text-gray-900">Áreas de atuação</h3>
+        <h3 className="text-md font-bold text-gray-900">Áreas de atuação</h3>
         <span className="text-sm text-gray-500">
           {count} {itemLabel}
         </span>

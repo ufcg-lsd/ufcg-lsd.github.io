@@ -26,7 +26,7 @@ export default async function FacaParte() {
     <PageFrame>
       <div className="flex flex-col gap-6 py-4 px-4">
         <div className="flex flex-col gap-2">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900">
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-900">
             {pageHeader?.title}
           </h1>
           {pageHeader?.text && (

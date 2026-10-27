@@ -32,7 +32,7 @@ export const ProjectsGrid: React.FC<{
   }, [area]);
 
   return (
-    <div className="py-2">
+    <div>
       <FilterBar
         tags={tags}
         selectedTags={selectedTags}
@@ -41,7 +41,6 @@ export const ProjectsGrid: React.FC<{
         count={items.length}
         itemLabel="projeto(s)"
       />
-      <div className="my-6 h-px w-full bg-gray-200" aria-hidden="true" />
       {isLoading ? (
         <p className="py-20 text-center text-gray-500">Carregando...</p>
       ) : paginated.length === 0 ? (

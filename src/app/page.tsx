@@ -2,7 +2,6 @@ import { FacaParteSection } from "@/components/FacaParteSection";
 import { Hero } from "@/components/Hero";
 import { Mosaic } from "@/components/Mosaic";
 import { PageFrame } from "@/components/PageFrame";
-import { PartnersCarousel } from "@/components/PartnersCarousel";
 import { getContent } from "@/utils/contentful";
 import {
   IContact,
@@ -11,7 +10,6 @@ import {
   IMainBanner,
   INovidade,
   IPageHeader,
-  IPartner,
   IResearchLine,
   IWorkingFieldWithCounts,
 } from "@/utils/interfaces";
@@ -29,7 +27,6 @@ export default async function Home() {
     workingFieldsCollection: workingFields,
     facaParteCollection,
     contactCollection,
-    parceiroCollection,
     newsCollection,
   }: {
     homePostCollection: { items: IHomePost[] };
@@ -38,7 +35,6 @@ export default async function Home() {
     workingFieldsCollection: { items: IWorkingFieldWithCounts[] };
     facaParteCollection: { items: IFacaParte[] };
     contactCollection: { items: IContact[] };
-    parceiroCollection: { items: IPartner[] };
     newsCollection: { items: INovidade[] };
   } = await getContent(HOME_QUERY);
 
@@ -52,10 +48,6 @@ export default async function Home() {
 
   const facaParteHeader = headers.items.filter(
     (header) => header.id == "faca-parte",
-  )[0];
-
-  const parceirosHeader = headers.items.filter(
-    (header) => header.id == "parceiros",
   )[0];
 
   const facaParte = facaParteCollection.items[0];
@@ -90,11 +82,6 @@ export default async function Home() {
           text={facaParteHeader?.text}
           facaParte={facaParte}
           email={email}
-        />
-        <PartnersCarousel
-          partners={parceiroCollection.items || []}
-          title={parceirosHeader.title}
-          text={parceirosHeader.text}
         />
       </div>
     </PageFrame>
