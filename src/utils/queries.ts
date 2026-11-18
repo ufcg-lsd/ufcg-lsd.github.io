@@ -190,8 +190,6 @@ export const PROJECTS_QUERY = `
             name
           }
         }
-        graduates
-        underGraduates
         initDate
         endDate
       }
@@ -343,8 +341,6 @@ export const PROJECTS_FILTERED_QUERY = `
             name
           }
         }
-        graduates
-        underGraduates
         initDate
         endDate
       }

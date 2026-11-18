@@ -55,23 +55,6 @@ export const ProjectCard = ({
             </button>
           ))}
         </div>
-        {(project.graduates != null || project.underGraduates != null) && (
-          <span className="text-sm text-gray-600 shrink-0">
-            {project.graduates != null && (
-              <>
-                <strong>{project.graduates}</strong> Graduados
-              </>
-            )}
-            {project.graduates != null &&
-              project.underGraduates != null &&
-              ", "}
-            {project.underGraduates != null && (
-              <>
-                <strong>{project.underGraduates}</strong> Alunos
-              </>
-            )}
-          </span>
-        )}
       </div>
     </div>
   );
