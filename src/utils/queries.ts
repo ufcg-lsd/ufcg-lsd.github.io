@@ -190,8 +190,6 @@ export const PROJECTS_QUERY = `
             name
           }
         }
-        graduates
-        underGraduates
         initDate
         endDate
       }
@@ -224,7 +222,7 @@ export const PROJECTS_QUERY = `
   }
 `;
 
-export const QUEM_SOMOS_QUERY = `
+export const HISTORIA_QUERY = `
   query {
     pageHeaderCollection(where: { id: "quem-somos" }) {
       items {
@@ -249,7 +247,7 @@ export const QUEM_SOMOS_QUERY = `
   }
 `;
 
-export const FACA_PARTE_QUERY = `
+export const INSTITUICAO_QUERY = `
   query {
     pageHeaderCollection(where: { id: "institucional" }) {
       items {
@@ -343,8 +341,6 @@ export const PROJECTS_FILTERED_QUERY = `
             name
           }
         }
-        graduates
-        underGraduates
         initDate
         endDate
       }
