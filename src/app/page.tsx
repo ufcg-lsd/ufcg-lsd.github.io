@@ -70,7 +70,6 @@ export default async function Home() {
           text={text}
           banners={banners?.items || []}
           news={newsCollection.items || []}
-          researchLines={researchLines}
         />
         <Mosaic
           posts={posts.items || []}
@@ -82,6 +81,7 @@ export default async function Home() {
           text={facaParteHeader?.text}
           facaParte={facaParte}
           email={email}
+          researchLines={researchLines}
         />
       </div>
     </PageFrame>

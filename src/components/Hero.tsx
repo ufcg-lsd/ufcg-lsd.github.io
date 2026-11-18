@@ -2,22 +2,19 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { Document } from "@contentful/rich-text-types";
 import { MapPin } from "lucide-react";
 import { BannerCarousel } from "@/components/BannerCarousel";
-import { IMainBanner, INovidade, IResearchLine } from "@/utils/interfaces";
+import { IMainBanner, INovidade } from "@/utils/interfaces";
 import { HeroNews } from "./HeroNews";
-import { ResearchLines } from "./ResearchLines";
 
 export const Hero = ({
   title,
   text,
   banners,
   news,
-  researchLines,
 }: {
   title: string;
   text: { json: Document };
   banners: IMainBanner[];
   news: INovidade[];
-  researchLines: IResearchLine[];
 }) => {
   return (
     <div className="flex flex-col lg:flex-row gap-6">
@@ -45,8 +42,6 @@ export const Hero = ({
         </a>
 
         {news.length > 0 && <HeroNews items={news} />}
-
-        <ResearchLines lines={researchLines} />
       </div>
     </div>
   );

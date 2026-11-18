@@ -1,20 +1,23 @@
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { Document } from "@contentful/rich-text-types";
-import { IFacaParte } from "@/utils/interfaces";
+import { IFacaParte, IResearchLine } from "@/utils/interfaces";
 import { Mail } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { ResearchLines } from "./ResearchLines";
 
 export const FacaParteSection = ({
   title,
   text,
   facaParte,
   email,
+  researchLines = [],
 }: {
   title?: string;
   text?: { json: Document };
   facaParte?: IFacaParte;
   email?: string;
+  researchLines?: IResearchLine[];
 }) => {
   return (
     <div className="flex flex-col gap-6 py-4">
@@ -64,6 +67,8 @@ export const FacaParteSection = ({
               Ver projetos abertos
             </Link>
           </div>
+
+          <ResearchLines lines={researchLines} />
         </div>
       </div>
     </div>
