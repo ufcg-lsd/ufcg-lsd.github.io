@@ -92,7 +92,7 @@ export const HOME_QUERY = `
         link
       }
     }
-    newsCollection(order: date_DESC, limit: 5) {
+    newsCollection(order: date_DESC, limit: 2) {
       items {
         label
         title

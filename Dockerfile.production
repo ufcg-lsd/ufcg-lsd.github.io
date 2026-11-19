@@ -22,7 +22,7 @@ RUN npm install
 # Copy the rest of the application code
 COPY . .
 
-# Build the Next.js projectdock
+# Build the Next.js project
 RUN npm run build
 
 CMD cp -r ./out/. /output
