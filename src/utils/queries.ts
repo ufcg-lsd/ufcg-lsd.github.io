@@ -233,6 +233,12 @@ export const HISTORIA_QUERY = `
         }
       }
     }
+    descriptionPhotosHistoryCollection(limit: 1) {
+      items {
+        title
+        description
+      }
+    }
     photosGalleryCollection {
       items {
         title

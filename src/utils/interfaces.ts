@@ -121,3 +121,8 @@ export interface IStaffStat {
   text: string;
   color: string;
 }
+
+export interface IPhotosHistoryDescription {
+  title: string;
+  description?: string;
+}
