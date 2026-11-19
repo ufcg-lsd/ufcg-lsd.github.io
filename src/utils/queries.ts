@@ -127,7 +127,7 @@ export const PORTFOLIO_QUERY = `
   }
 `;
 
-    export const PROFESSORS_QUERY = `
+export const PROFESSORS_QUERY = `
   query {
     docentesCollection {
       items {
@@ -164,10 +164,14 @@ export const PORTFOLIO_QUERY = `
         }
       }
     }
-
     workingFieldsCollection {
       items {
         name
+      }
+    }
+    teamDescriptionCollection(limit: 1) {
+      items {
+        description
       }
     }
   }

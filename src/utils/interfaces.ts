@@ -126,3 +126,7 @@ export interface IPhotosHistoryDescription {
   title: string;
   description?: string;
 }
+
+export interface ITeamDescription {
+  description?: string;
+}

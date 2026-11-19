@@ -15,7 +15,8 @@ const PAGE_SIZE = 12;
 export const ProfessorsGrid: React.FC<{
   tags: { name: string }[];
   initProfessors: IProfessor[];
-}> = ({ tags = [], initProfessors = [] }) => {
+  description?: string;
+}> = ({ tags = [], initProfessors = [], description }) => {
   const area = useSearchParams().get("area");
   const { selectedTags, items, currentPage, setCurrentPage, isLoading, totalPages, paginated, handleTagSelect, handleTagSelectOnly, handleClearTags } =
     usePaginatedFilter(initProfessors, PAGE_SIZE, async (activeTags) => {
@@ -41,6 +42,11 @@ export const ProfessorsGrid: React.FC<{
         count={items.length}
         itemLabel="pessoas"
       />
+      {description && (
+        <p className="text-sm md:text-base text-gray-600 mb-4 whitespace-pre-line">
+          {description}
+        </p>
+      )}
       <div className="my-6 h-px w-full bg-gray-200" aria-hidden="true" />
       {isLoading ? (
         <p className="py-20 text-center text-gray-500">Carregando...</p>
