@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: portal-lsd-static
+  labels:
+    app.kubernetes.io/name: portal-lsd-static
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: portal-lsd-static
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: portal-lsd-static
+    spec:
+      containers:
+        - name: portal-lsd-static
+          image: image-registry.openshift-image-registry.svc:5000/suporte/portal-lsd-static:latest
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 250m
+              memory: 128Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: portal-lsd-static
+  labels:
+    app.kubernetes.io/name: portal-lsd-static
+spec:
+  type: LoadBalancer
+  selector:
+    app.kubernetes.io/name: portal-lsd-static
+  ports:
+    - name: http
+      protocol: TCP
+      port: 30080
+      targetPort: http
