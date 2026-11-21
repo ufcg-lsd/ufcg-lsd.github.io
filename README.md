@@ -18,39 +18,19 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-## Atualização automática do Pensadouro LSD
+## Automatic update of Pensadouro LSD
 
-A página inicial consulta o feed RSS do Pensadouro LSD durante o build e usa as duas
-publicações mais recentes. O deploy pode ser iniciado automaticamente de duas formas:
+The homepage queries the Pensadouro LSD RSS feed during the build and uses the two
+most recent publications. If the feed fails, it uses the news items registered in Contentful.
 
-1. **Webhook do Contentful:** configure um webhook no Contentful que envie uma requisição
-   `POST` para o endpoint do GitHub abaixo sempre que houver uma publicação:
+The site is rebuilt and published automatically:
 
-   ```text
-   https://api.github.com/repos/ufcg-lsd/ufcg-lsd.github.io/dispatches
-   ```
+- on each push to `main`;
+- every two hours, by the schedule (cron) in `.github/workflows/deploy.yml`;
+- manually, in **Actions > Build and Deploy via Docker > Run workflow**.
 
-   Configure `Content-Type: application/json` e o cabeçalho:
-
-   ```text
-   Authorization: Bearer <TOKEN_GITHUB_COM_PERMISSAO_CONTENT_WRITE>
-   ```
-
-   Corpo da requisição:
-
-   ```json
-   {
-     "event_type": "deploy"
-   }
-   ```
-
-2. **Atualização periódica:** o workflow [.github/workflows/deploy.yml](./.github/workflows/deploy.yml)
-   também executa o build a cada duas horas.
-
-Também é possível iniciar o deploy manualmente em **Actions > Build and Deploy via Docker >
-Run workflow**.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Changes in Contentful and new Pensadouro posts appear on the site in the next cycle
+(up to two hours).
 
 ## Learn More
 
