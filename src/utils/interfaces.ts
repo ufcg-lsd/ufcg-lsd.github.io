@@ -49,6 +49,8 @@ export interface IProject {
   leader: { name: string };
   description: { json: Document };
   actionFieldsCollection: { items: IWorkingField[] };
+  graduates?: number;
+  underGraduates?: number;
   initDate: string;
   endDate?: string;
 }
@@ -118,4 +120,13 @@ export interface IStaffStat {
   valor: string;
   text: string;
   color: string;
+}
+
+export interface IPhotosHistoryDescription {
+  title: string;
+  description?: string;
+}
+
+export interface ITeamDescription {
+  description?: string;
 }

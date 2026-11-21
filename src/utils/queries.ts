@@ -127,7 +127,7 @@ export const PORTFOLIO_QUERY = `
   }
 `;
 
-    export const PROFESSORS_QUERY = `
+export const PROFESSORS_QUERY = `
   query {
     docentesCollection {
       items {
@@ -164,10 +164,14 @@ export const PORTFOLIO_QUERY = `
         }
       }
     }
-
     workingFieldsCollection {
       items {
         name
+      }
+    }
+    teamDescriptionCollection(limit: 1) {
+      items {
+        description
       }
     }
   }
@@ -222,7 +226,7 @@ export const PROJECTS_QUERY = `
   }
 `;
 
-export const QUEM_SOMOS_QUERY = `
+export const HISTORIA_QUERY = `
   query {
     pageHeaderCollection(where: { id: "quem-somos" }) {
       items {
@@ -231,6 +235,12 @@ export const QUEM_SOMOS_QUERY = `
         text {
           json
         }
+      }
+    }
+    descriptionPhotosHistoryCollection(limit: 1) {
+      items {
+        title
+        description
       }
     }
     photosGalleryCollection {
@@ -247,7 +257,7 @@ export const QUEM_SOMOS_QUERY = `
   }
 `;
 
-export const FACA_PARTE_QUERY = `
+export const INSTITUICAO_QUERY = `
   query {
     pageHeaderCollection(where: { id: "institucional" }) {
       items {

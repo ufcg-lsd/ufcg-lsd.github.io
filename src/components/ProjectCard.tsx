@@ -32,18 +32,21 @@ export const ProjectCard = ({
         <span className="text-sm text-gray-500 shrink-0">
           {getYear(project.initDate)} - {endLabel}
         </span>
-      </div>
-      {project.leader && (
-        <span className="text-gray-600 text-sm">
-          Coordenado por: <strong>{project.leader.name}</strong>
-        </span>
-      )}
 
-      <div className="mt-2 text-sm text-gray-700">
-        {documentToReactComponents(project.description.json)}
       </div>
-
+      
       <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
+        <div>
+          {project.leader && (
+          <span className="text-gray-600 text-sm">
+            Coordenado por: <strong>{project.leader.name}</strong>
+          </span>
+        )}
+        <div className="mt-2 text-sm text-gray-700">
+        {documentToReactComponents(project.description.json)}
+        </div>
+      </div>
+      
         <div className="flex flex-wrap gap-2">
           {project.actionFieldsCollection.items.map((field) => (
             <button

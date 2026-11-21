@@ -3,7 +3,12 @@ import { PageFrame } from "@/components/PageFrame";
 import { ProfessorsGrid } from "@/components/ProfessorsGrid";
 import { StatCard } from "@/components/StatCard";
 import { getContent } from "@/utils/contentful";
-import { IPageHeader, IProfessor, IStaffStat } from "@/utils/interfaces";
+import {
+  IPageHeader,
+  IProfessor,
+  IStaffStat,
+  ITeamDescription,
+} from "@/utils/interfaces";
 import { PROFESSORS_QUERY } from "@/utils/queries";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 
@@ -15,14 +20,18 @@ export default async function Professores() {
     docentesCollection,
     workingFieldsCollection: workingFields,
     staffStatsCollection: staffStats,
+    teamDescriptionCollection,
   }: {
     docentesCollection: { items: IProfessor[] };
     pageHeaderCollection: { items: IPageHeader[] };
     workingFieldsCollection: { items: { name: string }[] };
     staffStatsCollection: { items: IStaffStat[] };
+    teamDescriptionCollection: { items: ITeamDescription[] };
   } = await getContent(PROFESSORS_QUERY);
 
   const { title, text } = headers.items[0];
+  const teamDescription = teamDescriptionCollection?.items?.[0]?.description;
+
   return (
     <PageFrame>
       <div className="flex flex-col gap-3 py-4 px-4">
@@ -53,6 +62,7 @@ export default async function Professores() {
           <ProfessorsGrid
             tags={workingFields.items}
             initProfessors={docentesCollection.items}
+            description={teamDescription}
           />
         </Suspense>
       </div>

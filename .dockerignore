@@ -1,7 +1,2 @@
 node_modules
 .next
-out
-.git
-.env
-.env.*
-!.env.sample
