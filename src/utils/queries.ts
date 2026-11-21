@@ -83,6 +83,7 @@ export const HOME_QUERY = `
           width
           height
         }
+        videoUrl
       }
     }
     contactCollection(where: { id: "email" }) {

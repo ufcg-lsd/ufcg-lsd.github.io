@@ -6,9 +6,7 @@ export const RecentPublications = ({
 }: {
   publications: IPublication[];
 }) => {
-  console.log(publications)
   if (publications.length === 0) return null;
-
 
   return (
     <div className="flex flex-col gap-2">
