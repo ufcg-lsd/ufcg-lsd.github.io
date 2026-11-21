@@ -76,6 +76,7 @@ export interface IFacaParte {
 export interface INovidade {
   label: string;
   title: string;
+  descricaoCurta?: string;
   description?: string;
   date: string;
   link?: string;

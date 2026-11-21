@@ -97,6 +97,7 @@ export const HOME_QUERY = `
       items {
         label
         title
+        descricaoCurta
         date
         link
       }

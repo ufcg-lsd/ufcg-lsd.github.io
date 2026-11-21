@@ -43,7 +43,12 @@ export default async function Home() {
   const latestNews =
     rssPosts.length > 0
       ? rssPosts
-      : contentfulNewsCollection.items.slice(0, 2);
+      : contentfulNewsCollection.items
+          .slice(0, 2)
+          .map((item) => ({
+            ...item,
+            description: item.descricaoCurta,
+          }));
 
   const { title, text } = headers.items.filter(
     (header) => header.id == "home",
