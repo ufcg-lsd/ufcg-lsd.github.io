@@ -1,37 +1,41 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { INovidade } from "@/utils/interfaces";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  type CarouselApi,
-} from "@/components/ui/carousel";
 
-const formatDate = (dateStr: string) =>
-  new Intl.DateTimeFormat("pt-BR", {
+const formatDate = (dateStr: string) => {
+  const date = new Date(dateStr);
+  if (!dateStr || Number.isNaN(date.getTime())) return "";
+
+  return new Intl.DateTimeFormat("pt-BR", {
     day: "numeric",
     month: "long",
     year: "numeric",
-  }).format(new Date(dateStr));
+    timeZone: "America/Fortaleza",
+  }).format(date);
+};
 
 const NewsCard = ({ item }: { item: INovidade }) => {
+  const formattedDate = formatDate(item.date);
   const card = (
-    <div className="flex items-center justify-between gap-3 rounded-xs border-l-4 border-cyan-standard px-4 py-3">
+    <div className="flex items-start justify-between gap-3 rounded-xs border-l-4 border-cyan-standard px-4 py-3">
       <div className="min-w-0">
         <p className="text-[11px] font-semibold text-cyan-700">
           {item.label}
         </p>
-        <p className="truncate font-bold text-gray-900" title={item.title}>
+        <p className="font-bold leading-snug text-gray-900">
           {item.title}
         </p>
-        <p className="text-xs text-gray-500">
-          Publicado em {formatDate(item.date)}
-        </p>
+        {item.description && (
+          <p className="mt-1 text-sm leading-relaxed text-gray-600">
+            {item.description}
+          </p>
+        )}
+        {formattedDate && (
+          <p className="mt-1 text-xs text-gray-500">
+            Publicado em {formattedDate}
+          </p>
+        )}
       </div>
-      <ArrowRight size={20} className="shrink-0 text-cyan-700" />
+      <ArrowRight size={20} className="mt-1 shrink-0 text-cyan-700" />
     </div>
   );
 
@@ -45,55 +49,21 @@ const NewsCard = ({ item }: { item: INovidade }) => {
 };
 
 export const HeroNews = ({ items }: { items: INovidade[] }) => {
-  const [api, setApi] = useState<CarouselApi>();
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    if (!api) return;
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- initializes index state from embla's synchronous API on mount
-    setIndex(api.selectedScrollSnap());
-    api.on("select", () => setIndex(api.selectedScrollSnap()));
-  }, [api]);
+  const latestItems = items.slice(0, 2);
+  if (latestItems.length === 0) return null;
 
   return (
-    <Carousel
-      setApi={setApi}
-      opts={{ align: "start", loop: true }}
-      className="rounded-xs border border-gray-200 shadow-sm p-4 flex flex-col gap-3"
-    >
+    <section className="flex flex-col gap-3 rounded-xs border border-gray-200 p-4 shadow-sm">
       <div className="flex items-center justify-between">
         <span className="text-xs font-semibold text-gray-500 uppercase">novidades</span>
-        {items.length > 1 && (
-          <div className="flex items-center gap-2 text-gray-500">
-            <span className="text-xs">
-              {index + 1} / {items.length}
-            </span>
-            <button
-              type="button"
-              onClick={() => api?.scrollPrev()}
-              aria-label="Novidade anterior"
-              className="rounded-xs border border-gray-200 p-1 hover:bg-gray-100"
-            >
-              <ChevronLeft size={14} />
-            </button>
-            <button
-              type="button"
-              onClick={() => api?.scrollNext()}
-              aria-label="Próxima novidade"
-              className="rounded-xs border border-gray-200 p-1 hover:bg-gray-100"
-            >
-              <ChevronRight size={14} />
-            </button>
-          </div>
-        )}
       </div>
-      <CarouselContent className="ml-0">
-        {items.map((item) => (
-          <CarouselItem key={item.title} className="pl-0">
+      <div className="flex flex-col gap-2">
+        {latestItems.map((item) => (
+          <div key={`${item.title}-${item.date}`}>
             <NewsCard item={item} />
-          </CarouselItem>
+          </div>
         ))}
-      </CarouselContent>
-    </Carousel>
+      </div>
+    </section>
   );
 };

@@ -3,7 +3,18 @@ name: Build and Deploy via Docker
 on:
   push:
     branches:
-      - main  # or your default branch
+      - main
+      - dev
+  schedule:
+    - cron: "0 */2 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build-and-deploy:
@@ -18,17 +29,21 @@ jobs:
         with:
           context: .
           file: ./Dockerfile.production
+          no-cache: true
           tags: my-site:latest
           build-args: |
             NEXT_PUBLIC_CONTENTFUL_SPACE=${{ secrets.NEXT_PUBLIC_CONTENTFUL_SPACE }}
             NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN=${{ secrets.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN }}
+            NEXT_PUBLIC_GA_ID=${{ secrets.NEXT_PUBLIC_GA_ID }}
 
       - name: Run container and copy output
         run: |
           docker run --rm -v ${{ github.workspace }}/output:/output my-site
 
       - name: Deploy to GitHub Pages
+        if: github.ref == 'refs/heads/main'
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./output
+          force_orphan: true

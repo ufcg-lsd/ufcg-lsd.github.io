@@ -18,7 +18,19 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Automatic update of Pensadouro LSD
+
+The homepage queries the Pensadouro LSD RSS feed during the build and uses the two
+most recent publications. If the feed fails, it uses the news items registered in Contentful.
+
+The site is rebuilt and published automatically:
+
+- on each push to `main`;
+- every two hours, by the schedule (cron) in `.github/workflows/deploy.yml`;
+- manually, in **Actions > Build and Deploy via Docker > Run workflow**.
+
+Changes in Contentful and new Pensadouro posts appear on the site in the next cycle
+(up to two hours).
 
 ## Learn More
 

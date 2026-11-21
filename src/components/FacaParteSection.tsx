@@ -5,6 +5,7 @@ import { Mail } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { ResearchLines } from "./ResearchLines";
+import { getYouTubeVideoId } from "@/utils/youtube";
 
 export const FacaParteSection = ({
   title,
@@ -19,10 +20,24 @@ export const FacaParteSection = ({
   email?: string;
   researchLines?: IResearchLine[];
 }) => {
+  const videoId = getYouTubeVideoId(facaParte?.videoUrl);
+
   return (
     <div className="flex flex-col gap-6 py-4">
       <div className="flex flex-col md:flex-row gap-8 items-start">
-        {facaParte?.thumb ? (
+        {videoId ? (
+          <div className="w-full md:w-1/2 shrink-0 aspect-video overflow-hidden rounded-xs bg-gray-100">
+            <iframe
+              src={`https://www.youtube-nocookie.com/embed/${videoId}`}
+              title="Vídeo do laboratório LSD"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+              loading="lazy"
+              className="h-full w-full border-0"
+            />
+          </div>
+        ) : facaParte?.thumb ? (
           <div className="w-full md:w-1/2 shrink-0 overflow-hidden rounded-xs">
             <Image
               src={facaParte.thumb.url}

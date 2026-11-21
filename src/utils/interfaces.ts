@@ -70,11 +70,13 @@ export interface IPhotoGallery {
 export interface IFacaParte {
   text: { json: Document };
   thumb: { url: string; width: number; height: number };
+  videoUrl?: string;
 }
 
 export interface INovidade {
   label: string;
   title: string;
+  description?: string;
   date: string;
   link?: string;
 }

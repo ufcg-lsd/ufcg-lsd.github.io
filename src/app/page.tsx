@@ -2,7 +2,7 @@ import { FacaParteSection } from "@/components/FacaParteSection";
 import { Hero } from "@/components/Hero";
 import { Mosaic } from "@/components/Mosaic";
 import { PageFrame } from "@/components/PageFrame";
-import { getContent } from "@/utils/contentful";
+import { getContent, getPensadouroPosts } from "@/utils/contentful";
 import {
   IContact,
   IFacaParte,
@@ -15,11 +15,22 @@ import {
 } from "@/utils/interfaces";
 import { HOME_QUERY } from "@/utils/queries";
 
-export const revalidate = 60;
-
 const RESEARCH_LINE_COLORS = ["purple", "blue", "magenta", "amber", "rose"];
 
 export default async function Home() {
+  const [contentfulData, rssPosts] = await Promise.all([
+    getContent<{
+      homePostCollection: { items: IHomePost[] };
+      mainBannerCollection: { items: IMainBanner[] };
+      pageHeaderCollection: { items: IPageHeader[] };
+      workingFieldsCollection: { items: IWorkingFieldWithCounts[] };
+      facaParteCollection: { items: IFacaParte[] };
+      contactCollection: { items: IContact[] };
+      newsCollection: { items: INovidade[] };
+    }>(HOME_QUERY),
+    getPensadouroPosts(2),
+  ]);
+
   const {
     homePostCollection: posts,
     mainBannerCollection: banners,
@@ -27,16 +38,12 @@ export default async function Home() {
     workingFieldsCollection: workingFields,
     facaParteCollection,
     contactCollection,
-    newsCollection,
-  }: {
-    homePostCollection: { items: IHomePost[] };
-    mainBannerCollection: { items: IMainBanner[] };
-    pageHeaderCollection: { items: IPageHeader[] };
-    workingFieldsCollection: { items: IWorkingFieldWithCounts[] };
-    facaParteCollection: { items: IFacaParte[] };
-    contactCollection: { items: IContact[] };
-    newsCollection: { items: INovidade[] };
-  } = await getContent(HOME_QUERY);
+    newsCollection: contentfulNewsCollection,
+  } = contentfulData;
+  const latestNews =
+    rssPosts.length > 0
+      ? rssPosts
+      : contentfulNewsCollection.items.slice(0, 2);
 
   const { title, text } = headers.items.filter(
     (header) => header.id == "home",
@@ -69,7 +76,7 @@ export default async function Home() {
           title={title}
           text={text}
           banners={banners?.items || []}
-          news={newsCollection.items || []}
+          news={latestNews}
         />
         <Mosaic
           posts={posts.items || []}
