@@ -34,6 +34,11 @@ export const ProfessorsGrid: React.FC<{
 
   return (
     <div className="container">
+       {description && (
+        <p className="text-sm md:text-base text-gray-600 mb-4 whitespace-pre-line">
+          {description}
+        </p>
+      )}
       <FilterBar
         tags={tags}
         selectedTags={selectedTags}
@@ -42,11 +47,6 @@ export const ProfessorsGrid: React.FC<{
         count={items.length}
         itemLabel="pessoas"
       />
-      {description && (
-        <p className="text-sm md:text-base text-gray-600 mb-4 whitespace-pre-line">
-          {description}
-        </p>
-      )}
       <div className="my-6 h-px w-full bg-gray-200" aria-hidden="true" />
       {isLoading ? (
         <p className="py-20 text-center text-gray-500">Carregando...</p>
