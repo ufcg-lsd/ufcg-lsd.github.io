@@ -4,6 +4,8 @@ import { getContent } from "@/utils/contentful";
 import { INavItem, IPageHeader, IValues } from "@/utils/interfaces";
 import { INSTITUICAO_QUERY } from "@/utils/queries";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { BLOCKS, INLINES } from "@contentful/rich-text-types";
+import React from "react";
 
 export const revalidate = 60;
 
@@ -21,6 +23,48 @@ export default async function Instituicao() {
   const pageHeader = pageHeaderCollection.items[0];
   const { mission, vision, values } = valuesCollection.items[0];
   const colors = navItemsCollection.items.map((i) => i.color);
+  const linkColor = colors?.[0] ?? "#2563eb";
+
+  const richTextOptions = {
+    renderNode: {
+      [BLOCKS.PARAGRAPH]: (_node: unknown, children: React.ReactNode) => (
+        <p style={{ marginBottom: "1.25rem", lineHeight: "1.65" }}>{children}</p>
+      ),
+      [INLINES.HYPERLINK]: (
+        node: { data?: { uri?: string } },
+        children: React.ReactNode,
+      ) => (
+        <a
+          href={node.data?.uri}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            color: linkColor,
+            textDecoration: "underline",
+            fontWeight: 500,
+          }}
+        >
+          {children}
+        </a>
+      ),
+    },
+    renderText: (text: string) => {
+      return text
+        .split("\n")
+        .reduce((children: React.ReactNode[], textSegment, index) => {
+          return [
+            ...children,
+            index > 0 && (
+              <span
+                key={index}
+                style={{ display: "block", marginTop: "1rem" }}
+              />
+            ),
+            textSegment,
+          ];
+        }, []);
+    },
+  };
 
   return (
     <PageFrame>
@@ -31,7 +75,7 @@ export default async function Instituicao() {
           </h1>
           {pageHeader?.text && (
             <article className="text-sm md:text-base text-gray-600 mt-1">
-              {documentToReactComponents(pageHeader.text.json)}
+              {documentToReactComponents(pageHeader.text.json, richTextOptions)}
             </article>
           )}
         </div>
