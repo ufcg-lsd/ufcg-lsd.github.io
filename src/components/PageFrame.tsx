@@ -1,4 +1,4 @@
-import { IContact, INavItem } from "@/utils/interfaces";
+import { IAddress, IContact, INavItem } from "@/utils/interfaces";
 import { Header } from "./Header";
 import { getContent } from "@/utils/contentful";
 import { HEAD_QUERY } from "@/utils/queries";
@@ -13,10 +13,14 @@ export const PageFrame = async ({
   const {
     navItemsCollection: header,
     contactCollection: contact,
+    addressCollection,
   }: {
     navItemsCollection: { items: INavItem[] };
     contactCollection: { items: IContact[] };
+    addressCollection?: { items: IAddress[] };
   } = await getContent(HEAD_QUERY);
+
+  const address = addressCollection?.items?.[0]?.address;
 
   return (
     <div className={`transition duration-300 min-h-screen flex flex-col`}>
@@ -28,7 +32,11 @@ export const PageFrame = async ({
           </div>
         </div>
       </main>
-      <Footer contact={contact?.items || []} navItems={header?.items || []} />
+      <Footer
+        contact={contact?.items || []}
+        navItems={header?.items || []}
+        address={address}
+      />
     </div>
   );
 };

@@ -16,8 +16,12 @@ export const HEAD_QUERY = `
         link
       }
     }
+    addressCollection(limit: 1) {
+      items {
+        address
+      }
+    }
   }
-
 `;
 
 export const HOME_QUERY = `

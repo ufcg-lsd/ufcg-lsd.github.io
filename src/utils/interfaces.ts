@@ -133,3 +133,7 @@ export interface IPhotosHistoryDescription {
 export interface ITeamDescription {
   description?: string;
 }
+
+export interface IAddress {
+  address: string;
+}
