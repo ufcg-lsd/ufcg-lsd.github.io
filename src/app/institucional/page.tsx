@@ -3,10 +3,7 @@ import { PageFrame } from "@/components/PageFrame";
 import { getContent } from "@/utils/contentful";
 import { INavItem, IPageHeader, IValues } from "@/utils/interfaces";
 import { INSTITUCIONAL_QUERY } from "@/utils/queries";
-import {
-  documentToReactComponents,
-  Options,
-} from "@contentful/rich-text-react-renderer";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { BLOCKS, INLINES } from "@contentful/rich-text-types";
 import React from "react";
 
@@ -28,14 +25,17 @@ export default async function Institucional() {
   const colors = navItemsCollection.items.map((i) => i.color);
   const linkColor = colors?.[0] ?? "#2563eb";
 
-  const richTextOptions: Options = {
+  const richTextOptions = {
     renderNode: {
-      [BLOCKS.PARAGRAPH]: (_node, children) => (
+      [BLOCKS.PARAGRAPH]: (_node: unknown, children: React.ReactNode) => (
         <p style={{ marginBottom: "1.25rem", lineHeight: "1.65" }}>{children}</p>
       ),
-      [INLINES.HYPERLINK]: (node, children) => (
+      [INLINES.HYPERLINK]: (
+        node: { data?: { uri?: string } },
+        children: React.ReactNode,
+      ) => (
         <a
-          href={node.data.uri}
+          href={node.data?.uri}
           target="_blank"
           rel="noopener noreferrer"
           style={{
@@ -48,15 +48,15 @@ export default async function Institucional() {
         </a>
       ),
     },
-    renderText: (text) => {
+    renderText: (text: string) => {
       return text
         .split("\n")
-        .reduce<React.ReactNode[]>((children, textSegment, index) => {
+        .reduce((children: React.ReactNode[], textSegment, index) => {
           return [
             ...children,
             index > 0 && (
               <span
-                key={`br-${index}`}
+                key={index}
                 style={{ display: "block", marginTop: "1rem" }}
               />
             ),
