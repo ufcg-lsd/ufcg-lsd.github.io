@@ -76,6 +76,7 @@ export interface IFacaParte {
 export interface INovidade {
   label: string;
   title: string;
+  descricaoCurta?: string;
   description?: string;
   date: string;
   link?: string;
@@ -122,4 +123,13 @@ export interface IStaffStat {
   valor: string;
   text: string;
   color: string;
+}
+
+export interface IPhotosHistoryDescription {
+  title: string;
+  description?: string;
+}
+
+export interface ITeamDescription {
+  description?: string;
 }
