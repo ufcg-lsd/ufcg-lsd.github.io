@@ -38,7 +38,7 @@ export const MobileMenu = ({
           </button>
         </div>
         <div className="flex flex-col pb-4">
-          {items
+          {[...items]
             .sort((a, b) => a.order - b.order)
             .map((item, i) => (
               <MobileMenuItem

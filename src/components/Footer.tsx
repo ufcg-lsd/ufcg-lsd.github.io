@@ -35,17 +35,19 @@ export const Footer = ({
             alt="LSD logo with the characters combining as one big logo"
           />
           <div className="hidden md:flex flex-col items-center md:items-start gap-2 text-white">
-            {navItems.map((item) => (
-              <Link
-                key={item.id}
-                href={item.link}
-                className={`hover-button ${
-                  pathname === item.link && "font-bold underline"
-                }`}
-              >
-                {item.text}
-              </Link>
-            ))}
+            {[...navItems]
+              .sort((a, b) => a.order - b.order)
+              .map((item) => (
+                <Link
+                  key={item.id}
+                  href={item.link}
+                  className={`hover-button ${
+                    pathname === item.link && "font-bold underline"
+                  }`}
+                >
+                  {item.text}
+                </Link>
+              ))}
           </div>
         </div>
         <div className="flex flex-col items-center md:items-end text-white gap-4">
