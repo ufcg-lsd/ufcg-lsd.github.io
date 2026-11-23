@@ -17,7 +17,7 @@ export default async function Historia() {
   } = await getContent(HISTORIA_QUERY);
 
   const pageHeader = pageHeaderCollection.items.find(
-    (header) => header.id === "quem-somos",
+    (header) => header.title === "História",
   );
 
   return (

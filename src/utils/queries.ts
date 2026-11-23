@@ -225,7 +225,7 @@ export const PROJECTS_QUERY = `
 
 export const HISTORIA_QUERY = `
   query {
-    pageHeaderCollection(where: { id: "quem-somos" }) {
+    pageHeaderCollection {
       items {
         id
         title
@@ -248,7 +248,7 @@ export const HISTORIA_QUERY = `
   }
 `;
 
-export const INSTITUICAO_QUERY = `
+export const INSTITUCIONAL_QUERY = `
   query {
     pageHeaderCollection(where: { id: "institucional" }) {
       items {

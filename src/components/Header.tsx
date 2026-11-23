@@ -25,7 +25,7 @@ export const Header = ({ items }: { items: INavItem[] }) => {
           />
         </Link>
         <div className="hidden md:flex md:order-1 gap-2">
-          {items
+          {[...items]
             .sort((a, b) => a.order - b.order)
             .map((item) => (
               <HeaderItem
