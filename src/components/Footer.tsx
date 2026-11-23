@@ -9,13 +9,16 @@ import Link from "next/link";
 export const Footer = ({
   navItems,
   contact,
+  address,
 }: {
   navItems: INavItem[];
   contact: IContact[];
+  address?: string;
 }) => {
   const pathname = usePathname();
 
   const email = contact.filter((item) => item.id === "email");
+
   return (
     <div
       className="relative flex justify-center w-full"
@@ -64,13 +67,19 @@ export const Footer = ({
                   key={item.id}
                   href={item.link}
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="hover-button"
                 >
                   <Icon id={item.id} size={24} className="text-white" />
                 </a>
               ))}
           </div>
-          {email && (
+          {address && (
+            <p className="text-sm text-center md:text-right max-w-sm leading-relaxed whitespace-pre-line">
+              {address}
+            </p>
+          )}
+          {email[0] && (
             <a
               className="hover-button underline"
               href={`mailto:${email[0].link}`}
