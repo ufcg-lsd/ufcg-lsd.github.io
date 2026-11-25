@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - main
-    schedule:
-     - cron: "0 */2 * * *"
+  schedule:
+    - cron: "0 */2 * * *"
   workflow_dispatch:
 
 permissions:
@@ -38,7 +38,6 @@ jobs:
       - name: Run container and copy output
         run: |
           docker run --rm -v ${{ github.workspace }}/output:/output my-site
-          echo "www.lsd.ufcg.edu.br" > ${{ github.workspace }}/output/CNAME
 
       - name: Deploy to GitHub Pages
         if: github.ref == 'refs/heads/main'
